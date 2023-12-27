@@ -3,7 +3,7 @@
 }
 
 .showSideBar {
-    display: flex;
+    /*display: flex;*/
     z-index: 5;
     position: absolute;
 }

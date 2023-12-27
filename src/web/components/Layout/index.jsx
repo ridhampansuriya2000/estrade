@@ -21,35 +21,35 @@ const Layout = ({children}) => {
     };
 
     return (<>
-        <Box>
-            <Grid container style={newStyle.layoutComponent}>
+        <div>
+            <div style={newStyle.layoutComponent}>
 
                 {/*Start - Sidebar component responsible for navigation options*/}
-                <Grid item style={newStyle.sidebarComponent} className={`${openNavbar ? style.showSideBar : style.sideBar}`}>
+                <div style={newStyle.sidebarComponent} className={`${openNavbar ? style.showSideBar : style.sideBar}`}>
                     <Sidebar setOpenNavbar={setOpenNavbar} openNavbar={openNavbar}/>
-                </Grid>
+                </div>
                 {/*End - Sidebar component responsible for navigation options*/}
 
-                <Grid item style={newStyle.secondLayoutComponent} className={`${openNavbar ? style.openArrow : style.closeArrow}`} xl={12}
-                      onClick={(e) => closeNavbar(e)}>
+                <div style={newStyle.secondLayoutComponent} className={`${openNavbar ? style.openArrow : style.closeArrow}`}
+                     onClick={(e) => closeNavbar(e)}>
 
-                    {/*Start - Header component responsible for navigation options*/}
-                    <Box style={newStyle.headerLayoutComponent}>
+                    {/*    /!*Start - Header component responsible for navigation options*!/*/}
+                    <div style={newStyle.headerLayoutComponent}>
                         <HeaderWeb setOpenNavbar={setOpenNavbar} openNavbar={openNavbar}/>
-                    </Box>
-                    {/*End - Header component responsible for navigation options*/}
+                    </div>
+                    {/*    /!*End - Header component responsible for navigation options*!/*/}
 
-                    {/*Start - rendered router component within the main component*/}
-                    <Box style={newStyle.mainComponent}
-                         sx={{pr: {xl: 5, lg: 4, md: 3, sm: 2, xs: 1}, pl: {xl: 5, lg: 4, md: 3, sm: 2, xs: 1}, pt: {sm: 3, xs: 1.5}}}>
+                    {/*    /!*Start - rendered router component within the main component*!/*/}
+                    <Grid style={newStyle.mainComponent}
+                          sx={{pr: {lg: 4, xs: 2}, pl: {lg: 4, xs: 2}, pt: {sm: 4, xs: 2}}}>
                         {children}
-                    </Box>
-                    {/*End - rendered router component within the main component*/}
+                    </Grid>
+                    {/*    /!*End - rendered router component within the main component*!/*/}
 
-                </Grid>
+                </div>
 
-            </Grid>
-        </Box>
+            </div>
+        </div>
     </>);
 };
 
@@ -59,7 +59,8 @@ const newStyle = {
     layoutComponent: {
         display: 'flex',
         height: '100vh',
-        width: '100vw'
+        width: '100vw',
+        position: 'fixed',
     },
     sidebarComponent: {
         width: 'fit-content', backgroundColor: "#1c2434", height: '100vh'
@@ -75,6 +76,8 @@ const newStyle = {
         flexDirection: 'column',
     },
     mainComponent: {
-        backgroundColor: "#f1f5f9", height: '100vh'
+        overflow: 'scroll',
+        position: 'relative',
+        backgroundColor: "#f1f5f9", height: '100%'
     }
 };

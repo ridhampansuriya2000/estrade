@@ -41,11 +41,12 @@ const Sidebar = ({setOpenNavbar}) => {
                     <Grid container style={newStyle.sidebarTop} sx={{p: 2.5}}>
                         <Grid sx={{display: {xs: "flex", sm: "none"}}}>
                             <span>
-                              <CloseRoundedIcon sx={{fontSize: "30px", color: "rgb(241, 245, 249)"}} onClick={() => setOpenNavbar(false)}/>
+                              <CloseRoundedIcon sx={{fontSize: "30px", color: "rgb(241, 245, 249)", cursor: "pointer"}}
+                                                onClick={() => setOpenNavbar(false)}/>
                             </span>
                         </Grid>
                         <Grid sx={{display: {xs: "none", sm: "flex"}}}>
-                            <img src={logo} style={newStyle.sidebarLogo}/>
+                            <img src={logo} style={{height: 'auto', width: "40px"}}/>
                         </Grid>
                     </Grid>
 

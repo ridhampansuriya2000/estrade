@@ -23,16 +23,16 @@ const HeaderWeb = ({setOpenNavbar, openNavbar}) => {
         <>
             <Box style={{zIndex: 1}} onClick={() => setDropdownVisible(false)}
                  sx={{
-                     p: {sm: 2, xs: 1},
-                     pr: {xl: 5, lg: 4, md: 3, sm: 2, xs: 1},
-                     pl: {xl: 5, lg: 4, md: 3, sm: 2, xs: 1},
+                     p: {xs: 2},
+                     pr: {xs: 3},
+                     pl: {xs: 3},
                      boxShadow: '0px -1px 7px 0px rgba(0, 0, 0, 0.5)'
                  }}>
 
                 <Grid container xs={12} style={newStyle.headerFlex} width="100%">
                     <Grid style={newStyle.rightHeader}>
                         <Grid sx={{display: {xs: "contents", sm: "none"}}}>
-                            <Box sx={{ml: 1, borderRadius: "0.25rem", border: '1px solid #ccc!important'}}>
+                            <Box sx={{borderRadius: "0.25rem", border: '1px solid #ccc!important'}}>
                                 <MenuRoundedIcon style={newStyle.headerMenuIcon}
                                                  onClick={(e) => {
                                                      e.stopPropagation();
@@ -52,7 +52,7 @@ const HeaderWeb = ({setOpenNavbar, openNavbar}) => {
 
                     <Grid item>
                         <Grid container sx={{display: "flex", alignItems: 'center'}}>
-                            <Grid item sx={{height: 'max-content', pr: 3, display: {xs: "none", sm: "flex"}}}>
+                            <Grid item sx={{height: 'max-content', pr: 3, display: "flex"}}>
                                 <Box style={newStyle.notificationInfo} sx={{p: 1, border: 1, mr: 2}}>
                                     <NotificationsNoneIcon sx={{fontSize: "20px"}}/>
                                 </Box>
@@ -102,6 +102,6 @@ const newStyle = {
     },
     headerFlex: {display: 'flex', justifyContent: 'space-between'},
     rightHeader: {display: 'flex', alignItems: "center"},
-    headerMenuIcon: {fontSize: "30px", color: "rgb(28, 36, 52)", display: "flex"},
+    headerMenuIcon: {fontSize: "30px", color: "rgb(28, 36, 52)", display: "flex", cursor: "pointer"},
     headerLogo: {maxWidth: '100%', height: 'auto', width: "40px"}
 };

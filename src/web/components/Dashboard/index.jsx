@@ -1,39 +1,85 @@
 import React from 'react';
 import DashboardController from "./DashboardController"
-import Grid from "@mui/material/Grid";
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import {dashboardTabs} from "../../utilis/Constants/commonData"
 
 const Dashboard = () => {
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
     const {
         activeStep,
         setActiveStep,
         userLogOut
     } = DashboardController()
 
+    function CustomTabPanel(props) {
+        const {children, value, index, ...other} = props;
+
+        return (
+            <div
+                role="tabpanel"
+                hidden={value !== index}
+                id={`simple-tabpanel-${index}`}
+                aria-labelledby={`simple-tab-${index}`}
+                {...other}
+            >
+                {value === index && (
+                    <Box sx={{pt: 3}}>
+                        {children}
+                    </Box>
+                )}
+            </div>
+        );
+    }
+
+    function a11yProps(index) {
+        return {
+            id: `simple-tab-${index}`,
+            'aria-controls': `simple-tabpanel-${index}`,
+        };
+    }
 
     return (<>
-        <div style={{backgroundColor: "gray"}}>
+        <Box style={newStyle.tabBox} sx={{p: 2, overflowX: {xs: 'scroll', md: 'auto'}}}>
+            <Tabs value={value} onChange={handleChange} sx={{
+                overflowX: {xs: 'scroll', xl: "auto"},
+                width: {xs: '300px', sm: "600px"},
+                minWidth: 'fit-content',
+                minHeight: '48px',
+                display: '-webkit-box'
+            }}>
+                {dashboardTabs.map((tab, index) => {
+                    return (<Tab label={tab.name} {...a11yProps(index)}
+                                 sx={{
+                                     width: 'max-content',
+                                     fontWeight: 500, fontSize: '20px', textTransform: 'capitalize', color: "black",
+                                     '&.Mui-selected': {color: 'black'}
+                                 }}/>)
+                })}
+            </Tabs>
+        </Box>
 
-            Dashboard
-            <button onClick={() => {
-                userLogOut()
-            }}>Logout</button>
 
-        </div>
-        {/*<Grid container spacing={2}>*/}
-        {/*    <Grid item xs={6} md={8}>*/}
-        {/*        <span>xs=6 md=8</span>*/}
-        {/*    </Grid>*/}
-        {/*    <Grid item xs={6} md={4}>*/}
-        {/*        <span>xs=6 md=4</span>*/}
-        {/*    </Grid>*/}
-        {/*    <Grid item xs={12} md={4}>*/}
-        {/*        <span>xs=6 md=4</span>*/}
-        {/*    </Grid>*/}
-        {/*    <Grid item xs={0} md={0} sx={{display: {xs: "none", md: "block"}}}>*/}
-        {/*        <span>xs=6 md=8</span>*/}
-        {/*    </Grid>*/}
-        {/*</Grid>*/}
+        {dashboardTabs.map((Tab, index) => {
+            return (<CustomTabPanel value={value} index={index}>
+                <Tab.component/>
+            </CustomTabPanel>)
+        })}
+
     </>);
 };
 
 export default Dashboard;
+
+const newStyle = {
+    tabBox: {
+        borderBottom: 0, backgroundColor: 'white', border: '1px solid rgba(204, 204, 204, 0.5)',
+        boxShadow: '0px 8px 13px -3px rgba(0,0, 0, 0.07)',
+        display: "flex"
+    }
+};
