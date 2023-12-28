@@ -3,7 +3,7 @@ import {Box} from "@mui/material";
 
 const SelectTabs = ({selectData, selectTabs, setSelectTabs}) => {
     const [hover, setHover] = useState('');
-    console.log("hover", hover)
+
     return (
         <>
             <Box style={newStyle.tabComponent}>

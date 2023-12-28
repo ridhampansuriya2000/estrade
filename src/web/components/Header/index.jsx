@@ -1,22 +1,20 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Grid, Avatar, InputBase} from "@mui/material";
+import {Box, Grid, Avatar, InputBase, Badge} from "@mui/material";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import user from "../../../assets/Images/user-01.png"
 import "./header.css"
 import logo from "../../../assets/Images/logo/logo-icon.svg";
-import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import HeaderController from "./HeaderController"
+import Badges from "../../commonComponent/Badges"
 
 
 const HeaderWeb = ({setOpenNavbar, openNavbar}) => {
-    const [dropdownVisible, setDropdownVisible] = useState(false);
 
-    const toggleDropdown = (e) => {
-        e.stopPropagation();
-        setDropdownVisible(!dropdownVisible);
-    };
+    const {dropdownVisible, setDropdownVisible, toggleDropdown} = HeaderController();
 
 
     return (
@@ -32,7 +30,7 @@ const HeaderWeb = ({setOpenNavbar, openNavbar}) => {
                 <Grid container xs={12} style={newStyle.headerFlex} width="100%">
                     <Grid style={newStyle.rightHeader}>
                         <Grid sx={{display: {xs: "contents", sm: "none"}}}>
-                            <Box sx={{borderRadius: "0.25rem", border: '1px solid #ccc!important'}}>
+                            <Box sx={{borderRadius: "0.25rem", border: '1px solid #ccc'}}>
                                 <MenuRoundedIcon style={newStyle.headerMenuIcon}
                                                  onClick={(e) => {
                                                      e.stopPropagation();
@@ -53,12 +51,8 @@ const HeaderWeb = ({setOpenNavbar, openNavbar}) => {
                     <Grid item>
                         <Grid container sx={{display: "flex", alignItems: 'center'}}>
                             <Grid item sx={{height: 'max-content', pr: 3, display: "flex"}}>
-                                <Box style={newStyle.notificationInfo} sx={{p: 1, border: 1, mr: 2}}>
-                                    <NotificationsNoneIcon sx={{fontSize: "20px"}}/>
-                                </Box>
-                                <Box style={newStyle.notificationInfo} sx={{p: 1, border: 1}}>
-                                    <ChatOutlinedIcon sx={{fontSize: "20px"}}/>
-                                </Box>
+                                <Badges style={{marginRight: "10px"}} icon={<NotificationsNoneIcon sx={{fontSize: "20px"}}/>}/>
+                                <Badges icon={<ChatOutlinedIcon sx={{fontSize: "20px"}}/>}/>
                             </Grid>
                             <Grid item sx={{display: 'flex', alignItems: 'center'}}>
                                 <Avatar alt="Remy Sharp" src={user} sx={{width: 46, height: 46, mr: 1}}/>
@@ -95,10 +89,13 @@ const newStyle = {
     },
     notificationInfo: {
         backgroundColor: "#eff4fb",
-        borderRadius: "25px",
+        // borderRadius: "25px",
         display: 'flex',
         alignItems: 'center',
         borderColor: '#e5e5e5',
+        width: 40, height: 40,
+        borderRadius: '50%',
+        justifyContent: 'center',
     },
     headerFlex: {display: 'flex', justifyContent: 'space-between'},
     rightHeader: {display: 'flex', alignItems: "center"},

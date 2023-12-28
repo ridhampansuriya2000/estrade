@@ -1,11 +1,26 @@
 import React, {useState} from 'react';
 
-const initialDetail = [{name: 'Start Date', data: '1 Feb, 2022'},
+const initialDetail = [
+    {name: 'Start Date', data: '1 Feb, 2022'},
     {name: 'End Date', data: '28 Feb, 2022'},
     {name: 'Account Size', data: '$50,000.00'},
     {name: 'Status', data: 'In Progress'},
     {name: 'Status', data: 'In Progress'}];
+
 const newSelectData = ['Grow', 'Balance', 'Profit', 'DrowDown'];
+
+const initialTradingData = [
+    {name: 'Equity', data: '$12,344,4'},
+    {name: 'Udoras', data: '$52,215.52'},
+    {name: 'No of off', data: '48'},
+    {name: 'Loss', data: '7.09'},
+    {name: 'woin rate', data: '100.00%'},
+    {name: 'Highest', data: '$12,434.34'}];
+
+const tradingFactor = [
+    {name: 'Expectence', data: '$46.36'},
+    {name: 'Fyot Factor', data: '$15,215.52'},
+    {name: 'Noyot', data: '$53.96'}];
 
 const ProgressiveController = () => {
     const [progressiveDetail, setprogressiveDetail] = useState(initialDetail);
@@ -132,7 +147,7 @@ const ProgressiveController = () => {
         },
     };
 
-    return {progressiveDetail, options, state, newSelectData, selectTabs, setSelectTabs}
+    return {progressiveDetail, options, state, newSelectData, selectTabs, setSelectTabs, initialTradingData,tradingFactor}
 };
 
 export default ProgressiveController;

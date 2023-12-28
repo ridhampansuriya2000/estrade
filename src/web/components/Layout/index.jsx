@@ -41,7 +41,7 @@ const Layout = ({children}) => {
 
                     {/*    /!*Start - rendered router component within the main component*!/*/}
                     <Grid style={newStyle.mainComponent}
-                          sx={{pr: {lg: 4, xs: 2}, pl: {lg: 4, xs: 2}, pt: {sm: 4, xs: 2}}}>
+                          sx={{pr: {lg: 4, xs: 2}, pl: {lg: 4, xs: 2}, pt: {sm: 4, xs: 2},pb: {sm: 4, xs: 2}}}>
                         {children}
                     </Grid>
                     {/*    /!*End - rendered router component within the main component*!/*/}
