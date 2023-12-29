@@ -34,7 +34,6 @@
 
 .summaryBox {
     background-color: white;
-    /*border: 1px solid rgba(204, 204, 204, 0.5);*/
     box-shadow: rgba(0, 0, 0, 0.12) 10px 10px 43px 10px;
     border-radius: 20px;
 }

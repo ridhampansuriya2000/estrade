@@ -45,10 +45,10 @@ const Dashboard = () => {
     }
 
     return (<>
-        <Box style={newStyle.tabBox} sx={{p: 2, overflowX: {xs: 'scroll', md: 'auto'}}}>
+        <Box style={newStyle.tabBox} sx={{p: 2, overflowX: {xs: 'scroll', sm: 'auto'}}}>
             <Tabs value={value} onChange={handleChange} sx={{
-                overflowX: {xs: 'scroll', xl: "auto"},
-                width: {xs: '300px', sm: "600px"},
+                overflowX: {xs: 'scroll', sm: "auto"},
+                width: {xs: '300px', sm: "500px"},
                 minWidth: 'fit-content',
                 minHeight: '48px',
                 display: '-webkit-box'

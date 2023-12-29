@@ -33,7 +33,7 @@ const newStyle = {
         display: 'flex',
         alignItems: 'center',
         borderColor: '#e5e5e5',
-        width: 40, height: 40,
+        width:{xs:30,sm: 40}, height:{xs:30,sm: 40},
         borderRadius: '50%',
         justifyContent: 'center',
     },

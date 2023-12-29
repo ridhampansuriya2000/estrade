@@ -22,9 +22,19 @@ const tradingFactor = [
     {name: 'Fyot Factor', data: '$15,215.52'},
     {name: 'Noyot', data: '$53.96'}];
 
+const gainersStokes = [
+    {name: "BA", brand: "Boeing", price: 244.52, change: 7.19, changePercent: 3.03},
+    {name: "IBM", brand: "IBM", price: 161.96, change: 1.74, changePercent: 1.09},
+    {name: "INTC", brand: "Intel", price: 42.70, change: 0.55, changePercent: 1.30},
+    {name: "CVX", brand: "Chevron", price: 144.29, change: 1.87, changePercent: 1.31},
+    {name: "GS", brand: "Goldman", price: 350.80, change: 6.18, changePercent: 1.79}
+];
+
+
 const ProgressiveController = () => {
     const [progressiveDetail, setprogressiveDetail] = useState(initialDetail);
     const [selectTabs, setSelectTabs] = useState(newSelectData[0]);
+    const [gainersStokesData, setGainersStokesData] = useState(gainersStokes);
     const [state, setState] = useState({
         series: [
             {
@@ -147,7 +157,7 @@ const ProgressiveController = () => {
         },
     };
 
-    return {progressiveDetail, options, state, newSelectData, selectTabs, setSelectTabs, initialTradingData,tradingFactor}
+    return {progressiveDetail, options, state, newSelectData, selectTabs, setSelectTabs, initialTradingData, tradingFactor,gainersStokesData}
 };
 
 export default ProgressiveController;

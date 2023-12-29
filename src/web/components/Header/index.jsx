@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Grid, Avatar, InputBase, Badge} from "@mui/material";
+import {Box, Grid, Avatar, InputBase, Typography} from "@mui/material";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
@@ -50,11 +50,15 @@ const HeaderWeb = ({setOpenNavbar, openNavbar}) => {
 
                     <Grid item>
                         <Grid container sx={{display: "flex", alignItems: 'center'}}>
-                            <Grid item sx={{height: 'max-content', pr: 3, display: "flex"}}>
+                            <Grid item sx={{height: 'max-content', pr: {sm: 3, xs: 1}, display: "flex"}}>
                                 <Badges style={{marginRight: "10px"}} icon={<NotificationsNoneIcon sx={{fontSize: "20px"}}/>}/>
                                 <Badges icon={<ChatOutlinedIcon sx={{fontSize: "20px"}}/>}/>
                             </Grid>
                             <Grid item sx={{display: 'flex', alignItems: 'center'}}>
+                                <Box sx={{textAlign: 'end', pr: {sm: 2, xs: '1px'}}}>
+                                    <Typography sx={newStyle.userDetails}>Thomas Anree</Typography>
+                                    <Typography sx={{...newStyle.userDetails, opacity: '0.7'}}>UX Designer</Typography>
+                                </Box>
                                 <Avatar alt="Remy Sharp" src={user} sx={{width: 46, height: 46, mr: 1}}/>
 
                                 <div className="dropdown">
@@ -80,6 +84,10 @@ const HeaderWeb = ({setOpenNavbar, openNavbar}) => {
 export default HeaderWeb;
 
 const newStyle = {
+    userDetails: {
+        fontSize: '0.75rem',
+        lineHeight: '1rem'
+    },
     selectSpan: {
         color: 'black',
         padding: '12px 15px',

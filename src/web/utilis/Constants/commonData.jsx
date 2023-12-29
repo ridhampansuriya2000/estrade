@@ -6,3 +6,5 @@ export const dashboardTabs = [
     {name: 'Trading Jounal', component: ProgressiveComponent},
     {name: 'Account Info', component: ProgressiveComponent}
 ];
+
+export const dashboardStokesHeader = ['NAME', 'BRAND', 'PRICE', 'CHANGE', 'CHANGE%'];

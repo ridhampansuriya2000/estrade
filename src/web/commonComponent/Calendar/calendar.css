@@ -1,0 +1,209 @@
+.fc-theme-standard .fc-scrollgrid {
+    border: 1px solid #ddd0 !important;
+    border: 1px solid #ddd0 !important;
+}
+
+.rbc-month-header {
+    /*padding: 1.25rem;*/
+    /*font-size: 1rem;*/
+    /*line-height: 1.5rem;*/
+    color: white;
+    background-color: #3c50e0 !important;
+}
+
+.rbc-header {
+    padding: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.rbc-header {
+    border-bottom: red !important;
+}
+
+/*!* Remove all header borders (optional) *!*/
+.rbc-header {
+    border: red !important;
+}
+
+thead {
+    /*background-color: rgba(136, 136, 136, 0.34) !important;*/
+}
+
+/*table {*/
+/*    !*border: 0px solid #ddd0 !important;*!*/
+
+/*}*/
+
+/*tbody tr:last-child {*/
+/*    border: 1px solid #000000 !important;*/
+/*}*/
+
+
+/*td, th {*/
+/*    border: 1px solid #e2e8f0;*/
+/*    !*padding: 8px;*!*/
+/*    border-right: rgba(255, 255, 255, 0) !important;*/
+/*}*/
+
+.fc-col-header-cell {
+    border-bottom: rgba(255, 255, 255, 0) !important;
+}
+
+tr:last-child td {
+    border-bottom: rgba(255, 255, 255, 0) !important;
+}
+
+.fc-dayGridMonth-view {
+    /*background-color: #f1f1f1 !important;*/
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+    background-color: #1cce75;
+}
+
+.fc .fc-daygrid-day-top {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.fc .fc-daygrid-day-number {
+    font-weight: 600 !important;
+}
+
+.fc-day.holiday {
+    background-color: blue !important;
+    color: white !important;
+}
+
+.fc .fc-bg-event .fc-event-title {
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 13px;
+    /*text-overflow: ellipsis;*/
+}
+
+:focus-visible {
+    outline: -webkit-focus-ring-color auto 0px;
+}
+
+.fc-widget-content {
+    border-right: 2px solid #EE7 !important; /* Line thickness is 2px to better show */
+}
+
+.fc-widget-content:first-child {
+    border-right: inherit !important; /* Revert the first child */
+}
+
+.eventimage {
+    width: 100px;
+}
+
+.fc-h-event {
+    background-color: #3788d800 !important;
+    border: none !important;
+}
+
+.fc .fc-timegrid-now-indicator-arrow {
+    border-color: red;
+    border-style: solid;
+    margin-top: -5px;
+    position: absolute;
+    z-index: 4;
+}
+
+.fc .fc-button-primary {
+    /*border-radius: 20px !important;*/
+    background-color: #ffc9b1ad !important;
+    color: #f54d04 !important;
+    border-color: #ffffff00;
+    /*border-color: #888888 !important;*/
+}
+
+.fc .fc-button-primary {
+    /*color: #fff;*/
+    /*color: var(--fc-button-text-color, #fff);*/
+    /*background-color: #2C3E50;*/
+    /*background-color: var(--fc-button-bg-color, #2C3E50);*/
+    /*border-color: #2C3E50;*/
+    border-color: #2c3e5000 !important;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active:focus {
+    box-shadow: 0 0 0 0.2rem rgba(106, 86, 0, 0.5) !important;
+}
+
+.rbc-month-view {
+    border: none !important;
+}
+
+/*!*today color*!*/
+.rbc-today {
+    background-color: rgba(255, 201, 177, 0);
+}
+
+/*!*today color*!*/
+
+
+.rbc-header {
+    border-bottom: rgb(136, 0, 11);
+}
+
+/*.rbc-selected-cell {*/
+/*    background-color: rgba(230, 230, 230, 0.59);*/
+/*}*/
+
+/*.rbc-event:focus, .rbc-day-slot .rbc-background-event:focus {*/
+/*    outline: 0px auto rgba(59, 153, 252, 0) !important;*/
+/*}*/
+
+/*.rbc-day-slot .rbc-event, .rbc-day-slot .rbc-background-event {*/
+/*    border: 1px solid #bdbdbd7d;*/
+/*}*/
+
+/*.rbc-agenda-view table.rbc-agenda-table {*/
+/*    border: none !important;*/
+/*}*/
+
+/*tbody tr:last-child {*/
+/*    border: none !important;*/
+/*}*/
+
+/*.rbc-date-cell {*/
+/*    text-align: center;*/
+/*}*/
+
+/*.rbc-show-more {*/
+/*    color: #f54d04 !important;*/
+/*}*/
+
+.dashboard-calendar .rbc-month-row + .rbc-month-row {
+    border-top: 2px solid #e2e8f0;
+}
+
+.dashboard-calendar .rbc-day-bg + .rbc-day-bg {
+    border-left: 2px solid #e2e8f0;
+}
+
+.dashboard-calendar .rbc-day-bg:hover {
+    transition-duration: 500ms;
+    background-color: #eff4fb!important;
+}
+
+@media only screen and (max-width: 600px) {
+    .fc .fc-bg-event .fc-event-title {
+        width: 100%;
+        overflow-wrap: anywhere !important;
+        margin-top: 11px !important;
+    }
+
+    .rbc-header {
+        padding: 1.25rem 0.25rem;
+        font-size: 0.75rem;
+        line-height: 1rem;
+    }
+}
+
+
