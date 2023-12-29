@@ -173,7 +173,7 @@ const ProgressiveComponent = () => {
                     </Paper>
                 </Grid>
 
-                <Grid item xs={12} sx={{mt: 5}}>
+                <Grid item xs={12} sx={{mt: 5, zIndex: 0}}>
                     <Typography sx={{
                         ...newStyle.boxTitle,
                         fontSize: '26px',
@@ -182,11 +182,8 @@ const ProgressiveComponent = () => {
                     }}>Calendar</Typography>
                     <Paper sx={{
                         width: 'auto',
-                        // minWidth: {xs:'390px',sm:'auto'},
                         height: '700px',
                         backgroundColor: '#fff',
-                        // p: {sm: 3, xs: 2},
-                        // border: '1px solid rgba(204, 204, 204, 0.5)',
                         boxShadow: 'rgba(0, 0, 0, 0.07) 0px 8px 13px -3px'
                     }}>
                         <Calendar/>

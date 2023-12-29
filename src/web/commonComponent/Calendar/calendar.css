@@ -171,9 +171,20 @@ tr:last-child td {
 /*    border: none !important;*/
 /*}*/
 
-/*.rbc-date-cell {*/
-/*    text-align: center;*/
-/*}*/
+.dashboard-calendar .rbc-date-cell {
+    text-align: start;
+    padding: 0rem 1.5rem;
+    padding-top: 0.5rem;
+}
+
+.dashboard-calendar .rbc-row-segment {
+    margin: 0px 0px;
+}
+
+.dashboard-calendar .rbc-button-link {
+    color: black;
+    pointer-events: none;
+}
 
 /*.rbc-show-more {*/
 /*    color: #f54d04 !important;*/
@@ -187,9 +198,15 @@ tr:last-child td {
     border-left: 2px solid #e2e8f0;
 }
 
-.dashboard-calendar .rbc-day-bg:hover {
+.rbc-day-bg:hover {
     transition-duration: 500ms;
-    background-color: #eff4fb!important;
+    background-color: #eff4fb !important;
+    cursor: pointer;
+}
+.dashboard-calendar .rbc-day-bg + .rbc-day-bg:hover{
+    transition-duration: 500ms;
+    background-color: #eff4fb !important;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 600px) {
@@ -203,6 +220,12 @@ tr:last-child td {
         padding: 1.25rem 0.25rem;
         font-size: 0.75rem;
         line-height: 1rem;
+    }
+
+    .dashboard-calendar .rbc-date-cell {
+        text-align: start;
+        padding: 0rem 0.5rem;
+        padding-top: 0.5rem;
     }
 }
 
