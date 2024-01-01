@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {useLocation} from "react-router-dom"
+import {useLocation,Link} from "react-router-dom"
 import {Box, Grid, Typography} from "@mui/material";
 import WifiTetheringErrorRoundedIcon from '@mui/icons-material/WifiTetheringErrorRounded';
-import {Link} from "react-router-dom";
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import logo from "../../../assets/Images/logo/logo-icon.svg"
 import {LayoutPath} from "./LayoutPath"
 import LocalStorageManager from "../../utilis/LocalStorage/LocatStorage";
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 const Sidebar = ({setOpenNavbar}) => {
     let location = useLocation();

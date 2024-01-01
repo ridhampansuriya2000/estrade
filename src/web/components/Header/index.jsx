@@ -22,8 +22,8 @@ const HeaderWeb = ({setOpenNavbar, openNavbar}) => {
             <Box style={{zIndex: 1}} onClick={() => setDropdownVisible(false)}
                  sx={{
                      p: {xs: 2},
-                     pr: {xs: 3},
-                     pl: {xs: 3},
+                     pr: {lg: 4, xs: 2},
+                     pl: {lg: 4, xs: 2},
                      boxShadow: '0px -1px 7px 0px rgba(0, 0, 0, 0.5)'
                  }}>
 
@@ -37,7 +37,7 @@ const HeaderWeb = ({setOpenNavbar, openNavbar}) => {
                                                      setOpenNavbar(true)
                                                  }}/>
                             </Box>
-                            <Grid sx={{display: "flex", alignItems: 'center', pr: 1, maxWidth: 'max-content', pl: 3}}>
+                            <Grid sx={{display: "flex", alignItems: 'center', pr: 1, maxWidth: 'max-content', pl: 1}}>
                                 <img src={logo} style={newStyle.headerLogo}/>
                             </Grid>
                         </Grid>
@@ -51,19 +51,19 @@ const HeaderWeb = ({setOpenNavbar, openNavbar}) => {
                     <Grid item>
                         <Grid container sx={{display: "flex", alignItems: 'center'}}>
                             <Grid item sx={{height: 'max-content', pr: {sm: 3, xs: 1}, display: "flex"}}>
-                                <Badges style={{marginRight: "10px"}} icon={<NotificationsNoneIcon sx={{fontSize: "20px"}}/>}/>
+                                <Badges style={{marginRight: "10px",}} icon={<NotificationsNoneIcon sx={{fontSize: "20px"}}/>}/>
                                 <Badges icon={<ChatOutlinedIcon sx={{fontSize: "20px"}}/>}/>
                             </Grid>
                             <Grid item sx={{display: 'flex', alignItems: 'center'}}>
-                                <Box sx={{textAlign: 'end', pr: {sm: 2, xs: '1px'}}}>
+                                <Box sx={{textAlign: 'end', pr: {sm: 2, xs: '1px'}, display: {md: 'block', xs: 'none'}}}>
                                     <Typography sx={newStyle.userDetails}>Thomas Anree</Typography>
                                     <Typography sx={{...newStyle.userDetails, opacity: '0.7'}}>UX Designer</Typography>
                                 </Box>
-                                <Avatar alt="Remy Sharp" src={user} sx={{width: 46, height: 46, mr: 1}}/>
+                                <Avatar alt="Remy Sharp" src={user} sx={{width: 46, height: 46, mr: 1}} onClick={(e) => toggleDropdown(e)}/>
 
                                 <div className="dropdown">
                                     <div className="dropbtn" onClick={(e) => toggleDropdown(e)}>
-                                        <KeyboardArrowDownRoundedIcon sx={{cursor: "pointer"}}/>
+                                        <KeyboardArrowDownRoundedIcon sx={{cursor: "pointer", display: {sm: 'block', xs: 'none'}}}/>
                                     </div>
                                     <div className={`dropdown-content ${dropdownVisible ? 'show' : ''}`}>
                                         <span style={newStyle.selectSpan}>Home</span>
@@ -108,5 +108,9 @@ const newStyle = {
     headerFlex: {display: 'flex', justifyContent: 'space-between'},
     rightHeader: {display: 'flex', alignItems: "center"},
     headerMenuIcon: {fontSize: "30px", color: "rgb(28, 36, 52)", display: "flex", cursor: "pointer"},
-    headerLogo: {maxWidth: '100%', height: 'auto', width: "40px"}
+    headerLogo: {maxWidth: '100%', height: 'auto', width: "30px"},
+    headerComponent:{ p: {xs: 2},
+        pr: {lg: 4, xs: 2},
+        pl: {lg: 4, xs: 2},
+        boxShadow: '0px -1px 7px 0px rgba(0, 0, 0, 0.5)'}
 };

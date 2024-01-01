@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Badges = ({icon ,...rest}) => {
+const Badges = ({icon, ...rest}) => {
     const classes = useStyles();
 
     return (
@@ -33,7 +33,7 @@ const newStyle = {
         display: 'flex',
         alignItems: 'center',
         borderColor: '#e5e5e5',
-        width:{xs:30,sm: 40}, height:{xs:30,sm: 40},
+        width: 40, height: 40,
         borderRadius: '50%',
         justifyContent: 'center',
     },

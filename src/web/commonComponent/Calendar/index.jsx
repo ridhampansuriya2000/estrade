@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
 import {Calendar as BigCalendar, momentLocalizer} from "react-big-calendar";
-import { Box, Typography} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import moment from "moment";
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './calendar.css'
@@ -149,91 +149,91 @@ const Calendar = () => {
                         "title": "Team Meeting",
                         "category": 'Profit',
                         "revenue": '$45,22.2k',
-                        "start": "2023-12-01T09:00:00",
-                        "end": "2023-12-01T10:30:00"
+                        "start": "2024-01-01T09:00:00",
+                        "end": "2024-01-01T10:30:00"
                     },
-                    {
-                        "id": 2,
-                        "title": "Project Kickoff",
-                        "category": 'Loss',
-                        "revenue": '$754,45k',
-                        "start": "2023-12-02T11:00:00",
-                        "end": "2023-12-02T12:30:00"
-                    },
-                    {
-                        "id": 3,
-                        "title": "Client Presentation",
-                        "category": 'Loss',
-                        "revenue": '$312,45k',
-                        "start": "2023-12-03T14:00:00",
-                        "end": "2023-12-03T16:00:00"
-                    },
-                    {
-                        "id": 4,
-                        "title": "Team Building",
-                        "category": 'Loss',
-                        "revenue": '$834,45k',
-                        "start": "2023-12-04T09:00:00",
-                        "end": "2023-12-04T17:00:00"
-                    },
-                    {
-                        "id": 5,
-                        "title": "Team Workshop",
-                        "category": 'Profit',
-                        "revenue": '$322.2k',
-                        "start": "2023-12-05T10:00:00",
-                        "end": "2023-12-05T12:00:00"
-                    },
-                    {
-                        "id": 6,
-                        "title": "Team Building",
-                        "category": 'Profit',
-                        "revenue": '$522.2k',
+                        {
+                            "id": 2,
+                            "title": "Project Kickoff",
+                            "category": 'Loss',
+                            "revenue": '$754,45k',
+                            "start": "2024-01-02T11:00:00",
+                            "end": "2024-01-02T12:30:00"
+                        },
+                        {
+                            "id": 3,
+                            "title": "Client Presentation",
+                            "category": 'Loss',
+                            "revenue": '$312,45k',
+                            "start": "2024-01-03T14:00:00",
+                            "end": "2024-01-03T16:00:00"
+                        },
+                        {
+                            "id": 4,
+                            "title": "Team Building",
+                            "category": 'Loss',
+                            "revenue": '$834,45k',
+                            "start": "2024-01-04T09:00:00",
+                            "end": "2024-01-04T17:00:00"
+                        },
+                        {
+                            "id": 5,
+                            "title": "Team Workshop",
+                            "category": 'Profit',
+                            "revenue": '$322.2k',
+                            "start": "2024-01-05T10:00:00",
+                            "end": "2024-01-05T12:00:00"
+                        },
+                        {
+                            "id": 6,
+                            "title": "Team Building",
+                            "category": 'Profit',
+                            "revenue": '$522.2k',
 
-                        "start": "2023-12-06T10:00:00",
-                        "end": "2023-12-06T12:00:00"
-                    },
-                    {
-                        "id": 7,
-                        "title": "Project Review",
-                        "category": 'Loss',
-                        "revenue": '$334,45k',
-                        "start": "2023-12-07T15:00:00",
-                        "end": "2023-12-07T16:30:00"
-                    },
-                    {
-                        "id": 8,
-                        "title": "Team Building",
-                        "category": 'Loss',
-                        "revenue": '$34,45k',
-                        "start": "2023-12-08T09:00:00",
-                        "end": "2023-12-08T17:00:00"
-                    },
-                    {
-                        "id": 9,
-                        "title": "Internal Training",
-                        "category": 'Loss',
-                        "revenue": '$34,45k',
-                        "start": "2023-12-09T13:30:00",
-                        "end": "2023-12-09T15:00:00"
-                    },
-                    {
-                        "id": 10,
-                        "title": "Product Demo",
-                        "category": 'Profit',
-                        "revenue": '$522.2k',
-                        "start": "2023-12-10T14:30:00",
-                        "end": "2023-12-10T16:00:00"
-                    },
-                    {
-                        "id": 11,
-                        "title": "Team Building",
-                        "category": 'Profit',
-                        "revenue": '$222.2k',
-                        "start": "2023-12-11T09:00:00",
-                        "end": "2023-12-11T17:00:00"
-                    }
-                ]}
+                            "start": "2024-01-06T10:00:00",
+                            "end": "2024-01-06T12:00:00"
+                        },
+                        {
+                            "id": 7,
+                            "title": "Project Review",
+                            "category": 'Loss',
+                            "revenue": '$334,45k',
+                            "start": "2024-01-07T15:00:00",
+                            "end": "2024-01-07T16:30:00"
+                        },
+                        {
+                            "id": 8,
+                            "title": "Team Building",
+                            "category": 'Loss',
+                            "revenue": '$34,45k',
+                            "start": "2024-01-08T09:00:00",
+                            "end": "2024-01-08T17:00:00"
+                        },
+                        {
+                            "id": 9,
+                            "title": "Internal Training",
+                            "category": 'Loss',
+                            "revenue": '$34,45k',
+                            "start": "2024-01-09T13:30:00",
+                            "end": "2024-01-09T15:00:00"
+                        },
+                        {
+                            "id": 10,
+                            "title": "Product Demo",
+                            "category": 'Profit',
+                            "revenue": '$522.2k',
+                            "start": "2024-01-10T14:30:00",
+                            "end": "2024-01-10T16:00:00"
+                        },
+                        {
+                            "id": 11,
+                            "title": "Team Building",
+                            "category": 'Profit',
+                            "revenue": '$222.2k',
+                            "start": "2024-01-11T09:00:00",
+                            "end": "2024-01-11T17:00:00"
+                        }
+                    ]}
                 localizer={localizer}
                 views={{
                     month: true,
@@ -254,7 +254,6 @@ const Calendar = () => {
                     header: CustomHeader,
                     toolbar: () => null,
                     eventWrapper: ({event, children}) => {
-                        console.log("children", children, "event", event)
                         return (<Box sx={{
                             backgroundColor: '#eff4fb',
                             borderRadius: '0.125rem',
