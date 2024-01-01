@@ -4,7 +4,7 @@ import axios from "axios";
 
 // const {state, dispatch} = useAppContext();
 // const baseURL = axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
-const baseURL = import.meta.env.VITE_BASE_URL;
+const baseURL = 'https://localhost:5000/v1/api/';
 // axios.defaults.headers.common['Authorization'] = "AUTH_TOKEN";
 // headers: { 'Content-Type': 'application/json',}
 const instance = axios.create({
