@@ -1,19 +1,22 @@
 import React, {useState} from 'react';
-import LocalStorageManager from "../../utilis/LocalStorage/LocatStorage";
 import {useNavigate} from "react-router-dom";
 import {useAppContext} from "../../utilis/ContextState/AppContext";
+import {logOutUser} from "../../utilis/API/Call/apiCall";
 
 const DashboardController = () => {
     const [activeStep, setActiveStep] = useState("");
     const navigate = useNavigate();
     const {state, dispatch} = useAppContext();
 
-    const userLogOut=()=>{
-        LocalStorageManager.setLocalStorage('estrade_authorized', false)
-        dispatch({type: 'SET_USER_VERIFY'})
-        dispatch({type: 'SET_LOADING', payload: false})
-        navigate('/login')
-    }
+    const userLogOut = async () => {
+        const response = await logOutUser(dispatch)
+
+        if (response?.data?.status) {
+            dispatch({type: 'SET_USER_VERIFY'})
+            navigate('/login')
+        }
+    };
+
     return {
         activeStep,
         setActiveStep,

@@ -1,10 +1,16 @@
-import React, {useEffect, useState} from 'react';
-import {Box, Grid, Avatar, InputBase, Typography} from "@mui/material";
+import React from 'react';
+import {Avatar, Box, Grid, InputBase, Typography} from "@mui/material";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
+import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+
 import user from "../../../assets/Images/user-01.png"
 import "./header.css"
 import logo from "../../../assets/Images/logo/logo-icon.svg";
@@ -12,10 +18,9 @@ import HeaderController from "./HeaderController"
 import Badges from "../../commonComponent/Badges"
 
 
-const HeaderWeb = ({setOpenNavbar, openNavbar}) => {
+const HeaderWeb = ({setOpenNavbar, openNavbar, checkToken}) => {
 
-    const {dropdownVisible, setDropdownVisible, toggleDropdown} = HeaderController();
-
+    const {dropdownVisible, setDropdownVisible, toggleDropdown, userLogOut, userLogIn} = HeaderController();
 
     return (
         <>
@@ -66,9 +71,13 @@ const HeaderWeb = ({setOpenNavbar, openNavbar}) => {
                                         <KeyboardArrowDownRoundedIcon sx={{cursor: "pointer", display: {sm: 'block', xs: 'none'}}}/>
                                     </div>
                                     <div className={`dropdown-content ${dropdownVisible ? 'show' : ''}`}>
-                                        <span style={newStyle.selectSpan}>Home</span>
-                                        <span style={newStyle.selectSpan}>About</span>
-                                        <span style={newStyle.selectSpan}>Contact</span>
+                                        <span style={newStyle.selectSpan}><PersonOutlinedIcon/>&nbsp;&nbsp;My Profile</span>
+                                        <span style={newStyle.selectSpan}><ContactsOutlinedIcon/>&nbsp;&nbsp;My Contacts</span>
+                                        <span style={newStyle.selectSpan}><SettingsOutlinedIcon/>&nbsp;&nbsp;Account Settings</span>
+                                        {!checkToken ? <span style={...newStyle.logOutSpan} onClick={() => userLogIn()}><LoginOutlinedIcon
+                                            />&nbsp;&nbsp;Log In</span> :
+                                            <span style={...newStyle.logOutSpan} onClick={() => userLogOut()}><LogoutOutlinedIcon
+                                                sx={{transform: 'scaleX(-1)'}}/>&nbsp;&nbsp;Log Out</span>}
                                     </div>
                                 </div>
                             </Grid>
@@ -89,15 +98,22 @@ const newStyle = {
         lineHeight: '1rem'
     },
     selectSpan: {
-        color: 'black',
+        color: '#758398',
         padding: '12px 15px',
-        display: 'block',
+        display: 'flex',
         caretColor: 'transparent',
         cursor: 'pointer',
     },
+    logOutSpan: {
+        color: '#758398',
+        padding: '12px 15px',
+        display: 'flex',
+        caretColor: 'transparent',
+        cursor: 'pointer',
+        borderTop: '1px solid #e2e8f0',
+    },
     notificationInfo: {
         backgroundColor: "#eff4fb",
-        // borderRadius: "25px",
         display: 'flex',
         alignItems: 'center',
         borderColor: '#e5e5e5',
@@ -109,8 +125,10 @@ const newStyle = {
     rightHeader: {display: 'flex', alignItems: "center"},
     headerMenuIcon: {fontSize: "30px", color: "rgb(28, 36, 52)", display: "flex", cursor: "pointer"},
     headerLogo: {maxWidth: '100%', height: 'auto', width: "30px"},
-    headerComponent:{ p: {xs: 2},
+    headerComponent: {
+        p: {xs: 2},
         pr: {lg: 4, xs: 2},
         pl: {lg: 4, xs: 2},
-        boxShadow: '0px -1px 7px 0px rgba(0, 0, 0, 0.5)'}
+        boxShadow: '0px -1px 7px 0px rgba(0, 0, 0, 0.5)'
+    }
 };

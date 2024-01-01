@@ -36,7 +36,7 @@ const Layout = ({checkToken, children}) => {
 
                     {/*    /!*Start - Header component responsible for navigation options*!/*/}
                     <div style={newStyle.headerLayoutComponent}>
-                        <HeaderWeb setOpenNavbar={setOpenNavbar} openNavbar={openNavbar}/>
+                        <HeaderWeb setOpenNavbar={setOpenNavbar} openNavbar={openNavbar}checkToken={checkToken}/>
                     </div>
                     {/*    /!*End - Header component responsible for navigation options*!/*/}
 

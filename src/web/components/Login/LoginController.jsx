@@ -8,16 +8,13 @@ const LoginController = () => {
     const navigate = useNavigate();
 
     const loginUser = async () => {
-        dispatch({type: 'SET_LOADING', payload: true})
-        const response = await reauthenticate()
+        const response = await reauthenticate(dispatch)
         if (response.data.statusText === 'OK') {
             dispatch({type: 'SET_USER_VERIFY'})
             navigate('/dashboard')
         }
-        dispatch({type: 'SET_LOADING', payload: false})
+    };
 
-
-    }
     return {
         state,
         dispatch,

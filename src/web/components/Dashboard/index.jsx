@@ -14,7 +14,7 @@ const Dashboard = () => {
     const {
         activeStep,
         setActiveStep,
-        userLogOut
+        userLogOut,
     } = DashboardController()
 
     function CustomTabPanel(props) {

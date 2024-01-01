@@ -6,7 +6,6 @@ import {OpenRoutes, VerifyRoutes} from "../utilis/Constants/AllRoutes"
 import Loader from "../commonComponent/Loader";
 import Error from "../components/404/index"
 import {useAppContext} from "../utilis/ContextState/AppContext";
-import {verifyUser} from "../utilis/ContextState/AppActions";
 import LocalStorageManager from "../utilis/LocalStorage/LocatStorage";
 import {authStatus} from "../utilis/API/Call/apiCall";
 
@@ -20,20 +19,15 @@ const Router = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await authStatus();
-            if (response.msg.statusText === 'Unauthorized' || !checkToken) {
-                dispatch({type: 'SET_LOADING', payload: true});
-                await verifyUser(state, dispatch)
+            const response = await authStatus(dispatch);
+            if (response) {
+                dispatch({type: 'SET_USER_VERIFY'})
             }
-            // if (!state.userVerify && checkToken) {
-            //     dispatch({type: 'SET_LOADING', payload: true});
-            //     await verifyUser(state, dispatch)
-            // }
         };
 
-        if (!checkToken) {
-            fetchData();
-        }
+        // if (!checkToken) {
+        fetchData();
+        // }
         return () => {
         };
     }, []);
