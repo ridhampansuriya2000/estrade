@@ -5,7 +5,7 @@ export const appReducer = (state, action) => {
         case 'SET_LOADING':
             return {...state, loading: action.payload};
         case 'SET_USER_VERIFY': {
-            return {...state, userVerify: LocalStorageManager.getLocalStorage("estrade_verify") === true}
+            return {...state, userVerify: LocalStorageManager.getLocalStorage("estrade_authorized") === true}
         }
         default:
             return state;

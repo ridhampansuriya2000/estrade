@@ -9,7 +9,7 @@ const DashboardController = () => {
     const {state, dispatch} = useAppContext();
 
     const userLogOut=()=>{
-        LocalStorageManager.setLocalStorage('estrade_verify', false)
+        LocalStorageManager.setLocalStorage('estrade_authorized', false)
         dispatch({type: 'SET_USER_VERIFY'})
         dispatch({type: 'SET_LOADING', payload: false})
         navigate('/login')

@@ -1,18 +1,12 @@
 import React from 'react';
 import LoginController from "./LoginController"
-import LocalStorageManager from "../../utilis/LocalStorage/LocatStorage";
 
 const Login = () => {
-    const {state, dispatch, navigate} = LoginController()
+    const {state, dispatch, navigate,loginUser} = LoginController();
     return (
         <div>
             <button onClick={() => {
-                dispatch({type: 'SET_LOADING', payload: true})
-                LocalStorageManager.setLocalStorage('estrade_verify', true)
-                dispatch({type: 'SET_USER_VERIFY'})
-                dispatch({type: 'SET_LOADING', payload: false})
-                navigate('/dashboard')
-                // dispatch({type: 'SET_LOADING', payload: true})
+                loginUser()
             }}>Login
             </button>
             Login

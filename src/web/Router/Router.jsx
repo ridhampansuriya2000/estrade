@@ -8,25 +8,35 @@ import Error from "../components/404/index"
 import {useAppContext} from "../utilis/ContextState/AppContext";
 import {verifyUser} from "../utilis/ContextState/AppActions";
 import LocalStorageManager from "../utilis/LocalStorage/LocatStorage";
+import {authStatus} from "../utilis/API/Call/apiCall";
 
 
 const history = createBrowserHistory();
 
 const Router = () => {
     const {state, dispatch} = useAppContext();
-    const checkToken = LocalStorageManager.getLocalStorage('estrade_verify') === true;
+    const checkToken = LocalStorageManager.getLocalStorage('estrade_authorized') === true;
+
 
     useEffect(() => {
         const fetchData = async () => {
-            if (!state.userVerify && checkToken) {
+            const response = await authStatus();
+            if (response.msg.statusText === 'Unauthorized' || !checkToken) {
                 dispatch({type: 'SET_LOADING', payload: true});
                 await verifyUser(state, dispatch)
             }
+            // if (!state.userVerify && checkToken) {
+            //     dispatch({type: 'SET_LOADING', payload: true});
+            //     await verifyUser(state, dispatch)
+            // }
         };
-        fetchData();
+
+        if (!checkToken) {
+            fetchData();
+        }
         return () => {
         };
-    }, [])
+    }, []);
 
 
     const WithToken = ({children}) => {
@@ -50,7 +60,7 @@ const Router = () => {
             <Loader load={state.loading}/>
             {/*End - main loader*/}
 
-            <Layout>
+            <Layout checkToken={checkToken}>
 
                 {/*Start - Define routes accessible without user verification*/}
                 {OpenRoutes.map((({path, Compo, check}, index) => {

@@ -42,12 +42,8 @@ import {useAppContext} from "./AppContext";
 //     return {clearUser, login, logout};
 // };
 const simulateAsyncOperation = async (dispatch) => {
-    setTimeout(() => {
-        // localStorage.setItem('estrade_verify', 'true');
-
         dispatch({type: 'SET_USER_VERIFY'})
         dispatch({type: 'SET_LOADING', payload: false});
-    }, 1000);
 
 };
 

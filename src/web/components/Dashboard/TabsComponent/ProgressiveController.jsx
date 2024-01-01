@@ -1,4 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from "axios";
+import api from "../../../utilis/API/Interceptors/api"
+import {portfolioSummary} from "../../../utilis/API/Call/apiCall";
 
 const initialDetail = [
     {name: 'Start Date', data: '1 Feb, 2022'},
@@ -44,6 +47,14 @@ const ProgressiveController = () => {
         ],
     });
 
+    useEffect(() => {
+        async function fetchData() {
+            // const response = await portfolioSummary()
+            // console.log("response", response)
+        }
+
+        fetchData();
+    }, []);
     const options = {
         legend: {
             show: false,
@@ -157,7 +168,8 @@ const ProgressiveController = () => {
         },
     };
 
-    return {progressiveDetail, options, state, newSelectData, selectTabs, setSelectTabs, initialTradingData, tradingFactor,gainersStokesData}
+
+    return {progressiveDetail, options, state, newSelectData, selectTabs, setSelectTabs, initialTradingData, tradingFactor, gainersStokesData}
 };
 
 export default ProgressiveController;

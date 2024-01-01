@@ -4,7 +4,7 @@ import Sidebar from "../Sidebar";
 import HeaderWeb from "../Header";
 import style from "./layout.module.css"
 
-const Layout = ({children}) => {
+const Layout = ({checkToken, children}) => {
     const [openNavbar, setOpenNavbar] = useState(false);
 
     //Start -  Closes the navigation bar when the window width is 600 pixels.
@@ -25,9 +25,10 @@ const Layout = ({children}) => {
             <div style={newStyle.layoutComponent}>
 
                 {/*Start - Sidebar component responsible for navigation options*/}
-                <div style={newStyle.sidebarComponent} className={`${openNavbar ? style.showSideBar : style.sideBar}`}>
-                    <Sidebar setOpenNavbar={setOpenNavbar} openNavbar={openNavbar}/>
-                </div>
+                {checkToken ? <div style={newStyle.sidebarComponent} className={`${openNavbar ? style.showSideBar : style.sideBar}`}>
+                        <Sidebar setOpenNavbar={setOpenNavbar} openNavbar={openNavbar}/>
+                    </div>
+                    : <></>}
                 {/*End - Sidebar component responsible for navigation options*/}
 
                 <div style={newStyle.secondLayoutComponent} className={`${openNavbar ? style.openArrow : style.closeArrow}`}
@@ -41,7 +42,7 @@ const Layout = ({children}) => {
 
                     {/*    /!*Start - rendered router component within the main component*!/*/}
                     <Grid style={newStyle.mainComponent}
-                          sx={{pr: {lg: 4, xs: 2}, pl: {lg: 4, xs: 2}, pt: {sm: 4, xs: 2},pb: {sm: 4, xs: 2}}}>
+                          sx={{pr: {lg: 4, xs: 2}, pl: {lg: 4, xs: 2}, pt: {sm: 4, xs: 2}, pb: {sm: 4, xs: 2}}}>
                         {children}
                     </Grid>
                     {/*    /!*End - rendered router component within the main component*!/*/}
