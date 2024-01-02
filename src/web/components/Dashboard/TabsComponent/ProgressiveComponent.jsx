@@ -7,6 +7,7 @@ import SelectTabs from "../../../commonComponent/SelectTabs";
 import {dashboardStokesHeader} from "../../../utilis/Constants/commonData";
 import StokesTable from "../../../commonComponent/StokesTable";
 import Calendar from "../../../commonComponent/Calendar";
+import SummaryData from "../../../commonComponent/SummaryData";
 
 
 const ProgressiveComponent = () => {
@@ -41,33 +42,7 @@ const ProgressiveComponent = () => {
 
                 <Grid item lg={5} md={12} sx={{width: '100%'}}>
                     <Paper sx={newStyle.paperBox}>
-                        <Typography sx={newStyle.boxTitle}>DailySummary</Typography>
-                        <Box className={styles.summaryBox} sx={{p: 2.5}}>
-                            <Box sx={newStyle.objectiveDetails}>
-                                <Typography sx={{fontWeight: '700'}}>Day Gan</Typography>
-                                <Typography sx={newStyle.greenData}>15.41%</Typography>
-                            </Box>
-                            <Box sx={newStyle.objectiveDetails}>
-                                <Typography sx={{fontWeight: '700'}}>ABC Gan</Typography>
-                                <Typography sx={newStyle.greenData}>15.43%</Typography>
-                            </Box>
-                            <Box sx={newStyle.objectiveDetails}>
-                                <Typography sx={{fontWeight: '700'}}>Day Dradown</Typography>
-                                <Typography sx={newStyle.normalData}>0.17%</Typography>
-                            </Box>
-                            <Box sx={newStyle.objectiveDetails}>
-                                <Typography sx={{fontWeight: '700'}}>LoremEpsum</Typography>
-                                <Typography sx={newStyle.normalData}>1200</Typography>
-                            </Box>
-                            <Box sx={newStyle.objectiveDetails}>
-                                <Typography sx={{fontWeight: '700'}}>LoremEpsum</Typography>
-                                <Typography sx={newStyle.normalData}>7.22%</Typography>
-                            </Box>
-                            <Box sx={newStyle.objectiveDetails}>
-                                <Typography sx={{fontWeight: '700'}}>LoremEpsum</Typography>
-                                <Typography sx={newStyle.normalData}>7.22%</Typography>
-                            </Box>
-                        </Box>
+                        <SummaryData newStyle={newStyle}/>
                     </Paper>
                 </Grid>
 

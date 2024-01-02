@@ -1,7 +1,6 @@
 import React from 'react';
-import {Avatar, Box, Grid, InputBase, Typography} from "@mui/material";
+import {Avatar, Box, Grid, Divider, Typography} from "@mui/material";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
@@ -11,15 +10,16 @@ import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
+import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import user from "../../../assets/Images/user-01.png"
-import "./header.css"
 import logo from "../../../assets/Images/logo/logo-icon.svg";
 import HeaderController from "./HeaderController"
 import Badges from "../../commonComponent/Badges"
+import Home from "../../../assets/Images/Home.svg"
+import "./header.css"
 
 
 const HeaderWeb = ({setOpenNavbar, openNavbar, checkToken}) => {
-console.log("checkToken",checkToken)
     const {dropdownVisible, setDropdownVisible, toggleDropdown, userLogOut, userLogIn} = HeaderController();
 
     return (
@@ -29,7 +29,6 @@ console.log("checkToken",checkToken)
                      p: {xs: 2},
                      pr: {lg: 4, xs: 2},
                      pl: {lg: 4, xs: 2},
-                     boxShadow: '0px -1px 7px 0px rgba(0, 0, 0, 0.5)'
                  }}>
 
                 <Grid container xs={12} style={newStyle.headerFlex} width="100%">
@@ -47,8 +46,12 @@ console.log("checkToken",checkToken)
                             </Grid>
                         </Grid>
                         <Grid sx={{display: {xs: "none", sm: "contents"}}}>
-                            <SearchOutlinedIcon/>
-                            <InputBase sx={{ml: 1, flex: 1}} placeholder="Type to search" inputProps={{'aria-label': 'search google maps'}}/>
+                            <Typography sx={newStyle.headerTitle}>Account Metric</Typography>
+                            <Divider sx={{width: '2px', borderWidth: '1px', borderColor: "#3D454E", mr: 2}} orientation="vertical" variant="middle"
+                                     flexItem/>
+                            <img src={Home}/>
+                            <KeyboardArrowRightRoundedIcon sx={{ml: 1}}/>
+                            <Typography sx={newStyle.headerSubTitle}>Account Metric</Typography>
                         </Grid>
                     </Grid>
 
@@ -130,5 +133,16 @@ const newStyle = {
         pl: {lg: 4, xs: 2},
         boxShadow: '0px -1px 7px 0px rgba(0, 0, 0, 0.5)'
     },
-headerIcon:{fontSize: "20px", color: "#3D454E"}
+    headerIcon: {fontSize: "20px", color: "#3D454E"},
+    headerTitle: {
+        fontSize: '25px',
+        fontStyle: 'normal',
+        fontWeight: '500', pr: 2
+    },
+    headerSubTitle: {
+        fontSize: '19px',
+        fontStyle: 'normal',
+        fontWeight: '400',
+        ml: 2
+    }
 };

@@ -7,8 +7,8 @@ const SelectTabs = ({selectData, selectTabs, setSelectTabs}) => {
     return (
         <>
             <Box style={newStyle.tabComponent}>
-                {selectData?.map((name) => {
-                    return (<Box style={[selectTabs, hover].includes(name) ? newStyle.selectActiveTab : newStyle.selectTab}
+                {selectData?.map((name,index) => {
+                    return (<Box key={index} style={[selectTabs, hover].includes(name) ? newStyle.selectActiveTab : newStyle.selectTab}
                                  onMouseOut={() => setHover('')}
                                  onMouseEnter={() => setHover(name)}
                                  onClick={() => setSelectTabs(name)}>{name}</Box>)

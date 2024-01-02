@@ -1,7 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import axios from "axios";
-import api from "../../../utilis/API/Interceptors/api"
-import {portfolioSummary} from "../../../utilis/API/Call/apiCall";
 
 const initialDetail = [
     {name: 'Start Date', data: '1 Feb, 2022'},
@@ -47,14 +44,6 @@ const ProgressiveController = () => {
         ],
     });
 
-    useEffect(() => {
-        async function fetchData() {
-            // const response = await portfolioSummary()
-            // console.log("response", response)
-        }
-
-        fetchData();
-    }, []);
     const options = {
         legend: {
             show: false,
@@ -101,10 +90,6 @@ const ProgressiveController = () => {
             width: [2, 2],
             curve: 'smooth'
         },
-        // labels: {
-        //   show: false,
-        //   position: "top",
-        // },
         grid: {
             xaxis: {
                 lines: {
