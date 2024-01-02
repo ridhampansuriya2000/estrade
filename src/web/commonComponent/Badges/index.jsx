@@ -1,28 +1,16 @@
 import React from "react";
-import {Badge, Box} from "@mui/material";
+import { Box} from "@mui/material";
 import {makeStyles} from "@mui/styles";
 
-const useStyles = makeStyles((theme) => ({
-    customBadge: {
-        backgroundColor: "#d70e00",
-        color: "black",
-    },
-}));
 
 const Badges = ({icon, ...rest}) => {
-    const classes = useStyles();
+
 
     return (
         <>
-            <Badge {...rest} overlap="circular" variant="dot"
-                   classes={{badge: classes.customBadge}}
-                   className={classes.margin}
-                   badgeContent='. '
-            >
-                <Box component="span" sx={{...newStyle.notificationInfo}}>
+                <Box  {...rest} component="span" sx={{...newStyle.notificationInfo}}>
                     {icon}
                 </Box>
-            </Badge>
         </>
     );
 }

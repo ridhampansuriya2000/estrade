@@ -1,16 +1,16 @@
 import React from 'react';
 import {Avatar, Box, Grid, InputBase, Typography} from "@mui/material";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
+
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
-
+import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import user from "../../../assets/Images/user-01.png"
 import "./header.css"
 import logo from "../../../assets/Images/logo/logo-icon.svg";
@@ -56,14 +56,13 @@ console.log("checkToken",checkToken)
                     <Grid item>
                         <Grid container sx={{display: "flex", alignItems: 'center'}}>
                             <Grid item sx={{height: 'max-content', pr: {sm: 3, xs: 1}, display: "flex"}}>
-                                <Badges style={{marginRight: "10px",}} icon={<NotificationsNoneIcon sx={{fontSize: "20px"}}/>}/>
-                                <Badges icon={<ChatOutlinedIcon sx={{fontSize: "20px"}}/>}/>
+                                <Badges style={{marginRight: "10px",}} icon={<SearchOutlinedIcon sx={newStyle.headerIcon}/>}/>
+                                <Badges style={{marginRight: "10px",}} icon={<DarkModeOutlinedIcon sx={newStyle.headerIcon}/>}/>
+                                <Badges style={{marginRight: "10px",}} icon={<SettingsOutlinedIcon sx={newStyle.headerIcon}/>}/>
+                                <Badges icon={<NotificationsOutlinedIcon sx={newStyle.headerIcon}/>}/>
                             </Grid>
                             <Grid item sx={{display: 'flex', alignItems: 'center'}}>
-                                <Box sx={{textAlign: 'end', pr: {sm: 2, xs: '1px'}, display: {md: 'block', xs: 'none'}}}>
-                                    <Typography sx={newStyle.userDetails}>Thomas Anree</Typography>
-                                    <Typography sx={{...newStyle.userDetails, opacity: '0.7'}}>UX Designer</Typography>
-                                </Box>
+
                                 <Avatar alt="Remy Sharp" src={user} sx={{width: 46, height: 46, mr: 1}} onClick={(e) => toggleDropdown(e)}/>
 
                                 <div className="dropdown">
@@ -130,5 +129,6 @@ const newStyle = {
         pr: {lg: 4, xs: 2},
         pl: {lg: 4, xs: 2},
         boxShadow: '0px -1px 7px 0px rgba(0, 0, 0, 0.5)'
-    }
+    },
+headerIcon:{fontSize: "20px", color: "#3D454E"}
 };

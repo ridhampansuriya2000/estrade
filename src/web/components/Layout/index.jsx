@@ -64,7 +64,7 @@ const newStyle = {
         position: 'fixed',
     },
     sidebarComponent: {
-        width: 'fit-content', backgroundColor: "#1c2434", height: '100vh'
+        width: 'fit-content', backgroundColor: "#0085FF", height: '100vh'
     },
     secondLayoutComponent: {
         display: 'flex',

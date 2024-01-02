@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useLocation,Link} from "react-router-dom"
+import {useLocation, Link} from "react-router-dom"
 import {Box, Grid, Typography} from "@mui/material";
 import WifiTetheringErrorRoundedIcon from '@mui/icons-material/WifiTetheringErrorRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
@@ -45,7 +45,9 @@ const Sidebar = ({setOpenNavbar}) => {
                             </span>
                         </Grid>
                         <Grid sx={{display: {xs: "none", sm: "flex"}}}>
-                            <img src={logo} style={{height: 'auto', width: "40px"}}/>
+                            <Box sx={{}}>
+                                <img src={logo} style={{height: 'auto', width: "40px"}}/>
+                            </Box>
                         </Grid>
                     </Grid>
 

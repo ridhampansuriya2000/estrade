@@ -45,8 +45,6 @@ const Dashboard = () => {
     }
 
     return (<>
-        <button onClick={()=>{
-            userLogOut()}}>LogOut</button>
         <Box style={newStyle.tabBox} sx={{p: 2, overflowX: {xs: 'scroll', sm: 'auto'}}}>
             <Tabs value={value} onChange={handleChange} sx={{
                 overflowX: {xs: 'scroll', sm: "auto"},
