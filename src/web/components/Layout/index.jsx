@@ -71,13 +71,14 @@ const newStyle = {
         flexDirection: 'column',
         flex: 'auto',
         height: '100vh',
+        width:'calc(100vw - 80px)',
     },
     headerLayoutComponent: {
         display: 'flex',
         flexDirection: 'column',
     },
     mainComponent: {
-        overflow: 'scroll',
+        overflow: 'auto',
         position: 'relative',
         backgroundColor: "#f1f5f9", height: '100%'
     }

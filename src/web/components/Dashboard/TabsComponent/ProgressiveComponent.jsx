@@ -11,7 +11,7 @@ import SummaryData from "../../../commonComponent/SummaryData";
 
 
 const ProgressiveComponent = () => {
-    const {progressiveDetail, options, state, newSelectData, selectTabs, setSelectTabs, initialTradingData, tradingFactor, gainersStokesData} = ProgressiveController();
+    const {progressiveDetail, options, newState, newSelectData, selectTabs, setSelectTabs, initialTradingData, tradingFactor, gainersStokesData,dispatch} = ProgressiveController();
     return (<>
         <div>
             <Box sx={{flexGrow: 1}}>
@@ -36,13 +36,13 @@ const ProgressiveComponent = () => {
                             <SelectTabs selectData={newSelectData} selectTabs={selectTabs} setSelectTabs={setSelectTabs}/>
                             <Box className={styles.tabComponent}><Typography sx={newStyle.selectActiveTab}>Grow v</Typography></Box>
                         </Box>
-                        <ApexChart options={options} state={state}/>
+                        <ApexChart options={options} state={newState}/>
                     </Paper>
                 </Grid>
 
                 <Grid item lg={5} md={12} sx={{width: '100%'}}>
                     <Paper sx={newStyle.paperBox}>
-                        <SummaryData newStyle={newStyle}/>
+                        <SummaryData newStyle={newStyle} dispatch={dispatch}/>
                     </Paper>
                 </Grid>
 

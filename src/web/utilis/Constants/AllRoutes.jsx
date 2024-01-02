@@ -1,7 +1,7 @@
-import React, {lazy} from 'react';
+import React from 'react';
 import Login from "../../components/Login";
 import Dashboard from "../../components/Dashboard";
-import Account from "../../components/Account";
+import Account from "../../components/Dashboard/Account";
 import Home from "../../components/Home"
 
 // Start - Define routes accessible with user verification

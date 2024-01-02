@@ -1,4 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
+import {useAppContext} from "../../../utilis/ContextState/AppContext";
+
 
 const initialDetail = [
     {name: 'Start Date', data: '1 Feb, 2022'},
@@ -35,7 +37,7 @@ const ProgressiveController = () => {
     const [progressiveDetail, setprogressiveDetail] = useState(initialDetail);
     const [selectTabs, setSelectTabs] = useState(newSelectData[0]);
     const [gainersStokesData, setGainersStokesData] = useState(gainersStokes);
-    const [state, setState] = useState({
+    const [newState, setNewState] = useState({
         series: [
             {
                 name: 'Product One',
@@ -43,6 +45,7 @@ const ProgressiveController = () => {
             },
         ],
     });
+    const { state,dispatch} = useAppContext();
 
     const options = {
         legend: {
@@ -154,7 +157,7 @@ const ProgressiveController = () => {
     };
 
 
-    return {progressiveDetail, options, state, newSelectData, selectTabs, setSelectTabs, initialTradingData, tradingFactor, gainersStokesData}
+    return {progressiveDetail, options, newState, newSelectData, selectTabs, setSelectTabs, initialTradingData, tradingFactor, gainersStokesData,dispatch}
 };
 
 export default ProgressiveController;

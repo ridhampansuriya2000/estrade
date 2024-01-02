@@ -13,9 +13,9 @@ const SummaryDataController = () => {
                 setPLData(response?.data?.upnl["DU7621536.Core"])
             }
         }
-
         fetchData();
     }, []);
+
     return {PLData}
 };
 
