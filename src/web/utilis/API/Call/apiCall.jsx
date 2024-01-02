@@ -2,15 +2,6 @@ import api from "../Interceptors/api"
 import LocalStorageManager from "../../LocalStorage/LocatStorage";
 
 
-export async function portfolioSummary() {
-    try {
-        const res = await api.post('iserver/reauthenticate')
-        return {success: true, data: res.data}
-    } catch (e) {
-        return {success: false, msg: "Something went wrong"};
-    }
-}
-
 export async function authStatus(dispatch) {
     dispatch({type: 'SET_LOADING', payload: true});
     try {
@@ -41,7 +32,7 @@ export async function reauthenticate(dispatch) {
         dispatch({type: 'SET_LOADING', payload: false});
         return {success: true, data: res}
     } catch (e) {
-        await logOutUser(dispatch)
+        // await logOutUser(dispatch)
         // LocalStorageManager.setLocalStorage('estrade_authorized', false)
         dispatch({type: 'SET_LOADING', payload: false});
         return {success: false, msg: e.response};
@@ -66,13 +57,13 @@ export async function logOutUser(dispatch) {
 
 export async function pnlPartitionedData(dispatch) {
     try {
-        const res = await api.get('iserver/account/pnl/partitioned')
+        const res = await api.get('iserver/account/pnl/partitioned');
         if (res.statusText !== 'OK') {
-            await logOutUser(dispatch)
+            // await logOutUser(dispatch)
         }
         return {success: true, data: res.data}
     } catch (e) {
-        await logOutUser(dispatch)
+        // await logOutUser(dispatch)
         return {success: false, msg: e.response};
     }
 }
