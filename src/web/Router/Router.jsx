@@ -19,7 +19,6 @@ const Router = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            console.log("authStatus")
             const response = await authStatus(dispatch);
             if (response) {
                 dispatch({type: 'SET_USER_VERIFY'})

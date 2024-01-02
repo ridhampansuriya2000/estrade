@@ -41,7 +41,8 @@ export async function reauthenticate(dispatch) {
         dispatch({type: 'SET_LOADING', payload: false});
         return {success: true, data: res}
     } catch (e) {
-        LocalStorageManager.setLocalStorage('estrade_authorized', false)
+        await logOutUser(dispatch)
+        // LocalStorageManager.setLocalStorage('estrade_authorized', false)
         dispatch({type: 'SET_LOADING', payload: false});
         return {success: false, msg: e.response};
     }
