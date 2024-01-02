@@ -19,7 +19,7 @@ import Badges from "../../commonComponent/Badges"
 
 
 const HeaderWeb = ({setOpenNavbar, openNavbar, checkToken}) => {
-
+console.log("checkToken",checkToken)
     const {dropdownVisible, setDropdownVisible, toggleDropdown, userLogOut, userLogIn} = HeaderController();
 
     return (
