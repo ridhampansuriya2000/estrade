@@ -73,9 +73,9 @@ console.log("checkToken",checkToken)
                                         <span style={newStyle.selectSpan}><PersonOutlinedIcon/>&nbsp;&nbsp;My Profile</span>
                                         <span style={newStyle.selectSpan}><ContactsOutlinedIcon/>&nbsp;&nbsp;My Contacts</span>
                                         <span style={newStyle.selectSpan}><SettingsOutlinedIcon/>&nbsp;&nbsp;Account Settings</span>
-                                        {!checkToken ? <span style={...newStyle.logOutSpan} onClick={() => userLogIn()}><LoginOutlinedIcon
+                                        {!checkToken ? <span style={newStyle.logOutSpan} onClick={() => userLogIn()}><LoginOutlinedIcon
                                             />&nbsp;&nbsp;Log In</span> :
-                                            <span style={...newStyle.logOutSpan} onClick={() => userLogOut()}><LogoutOutlinedIcon
+                                            <span style={newStyle.logOutSpan} onClick={() => userLogOut()}><LogoutOutlinedIcon
                                                 sx={{transform: 'scaleX(-1)'}}/>&nbsp;&nbsp;Log Out</span>}
                                     </div>
                                 </div>
