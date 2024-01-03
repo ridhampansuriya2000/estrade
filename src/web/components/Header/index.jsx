@@ -47,11 +47,14 @@ const HeaderWeb = ({setOpenNavbar, openNavbar, checkToken}) => {
                         </Grid>
                         <Grid sx={{display: {xs: "none", sm: "contents"}}}>
                             <Typography sx={newStyle.headerTitle}>Account Metric</Typography>
-                            <Divider sx={{width: '2px', borderWidth: '1px', borderColor: "#3D454E", mr: 2}} orientation="vertical" variant="middle"
+                            <Divider sx={{width: '2px', borderWidth: '1px', borderColor: "#3D454E", mr: 2,display: {md:"flex",xs:"none"}}} orientation="vertical"
+                                     variant="middle"
                                      flexItem/>
-                            <img src={Home}/>
-                            <KeyboardArrowRightRoundedIcon sx={{ml: 1}}/>
-                            <Typography sx={newStyle.headerSubTitle}>Account Metric</Typography>
+                            <Box sx={{display: {md:"flex",xs:"none"}}}>
+                                <img src={Home}/>
+                                <KeyboardArrowRightRoundedIcon sx={{ml: 1}}/>
+                                <Typography sx={newStyle.headerSubTitle}>Account Metric</Typography>
+                            </Box>
                         </Grid>
                     </Grid>
 
@@ -126,7 +129,7 @@ const newStyle = {
     headerFlex: {display: 'flex', justifyContent: 'space-between'},
     rightHeader: {display: 'flex', alignItems: "center"},
     headerMenuIcon: {fontSize: "30px", color: "rgb(28, 36, 52)", display: "flex", cursor: "pointer"},
-    headerLogo: {maxWidth: '100%', height: 'auto', width: "30px"},
+    headerLogo: {maxWidth: '100%', height: 'auto', width: "40px"},
     headerComponent: {
         p: {xs: 2},
         pr: {lg: 4, xs: 2},

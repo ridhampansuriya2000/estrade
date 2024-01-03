@@ -10,8 +10,9 @@ import Calendar from "../../../commonComponent/Calendar";
 import SummaryData from "../../../commonComponent/SummaryData";
 
 
-const ProgressiveComponent = () => {
-    const {progressiveDetail, options, newState, newSelectData, selectTabs, setSelectTabs, initialTradingData, tradingFactor, gainersStokesData,dispatch} = ProgressiveController();
+const ProgressiveComponent = ({userAccountData}) => {
+
+    const {progressiveDetail, options, newState, newSelectData, selectTabs, setSelectTabs, initialTradingData, tradingFactor, gainersStokesData, dispatch, portfolioLedger, PLData} = ProgressiveController({userAccountData});
     return (<>
         <div>
             <Box sx={{flexGrow: 1}}>
@@ -42,20 +43,18 @@ const ProgressiveComponent = () => {
 
                 <Grid item lg={5} md={12} sx={{width: '100%'}}>
                     <Paper sx={newStyle.paperBox}>
-                        <SummaryData newStyle={newStyle} dispatch={dispatch}/>
+                        <SummaryData newStyle={newStyle} dispatch={dispatch} PLData={PLData}/>
                     </Paper>
                 </Grid>
 
                 <Grid item lg={7} md={12}>
                     <Paper sx={newStyle.paperBox}>
-                        <Typography sx={newStyle.boxTitle}>Trading Objective</Typography>
-                        <Box className={styles.summaryBox} sx={{p: 2.5}}>
-
+                        <Box sx={{...newStyle.userBalanceDetails, p: 2.5}}>
                             <Grid container spacing={2}>
                                 {initialTradingData?.map((value) => {
-                                    return (<Grid item lg={3} md={4} xs={6}>
+                                    return (<Grid item lg={2} md={2} xs={6}>
 
-                                        <Typography sx={{fontWeight: 700}}>{value.name}</Typography>
+                                        <Typography sx={newStyle.tradeTitle}>{value.name}</Typography>
                                         <Typography sx={newStyle.normalData}>{value.data}</Typography>
                                     </Grid>)
                                 })}
@@ -66,25 +65,23 @@ const ProgressiveComponent = () => {
                             <Grid item lg={6} md={6} xs={12}>
                                 <Box sx={{display: "flex", justifyContent: 'space-between'}}>
                                     <Box sx={newStyle.averagePrice}>
-                                        <Typography sx={{fontWeight: 700}}>Avrg pice</Typography>
-                                        <Typography sx={{fontWeight: '700', color: "rgb(100 116 139 / 1)"}}>$46.36</Typography>
+                                        <Typography sx={newStyle.tradeTitle}>Average Profit</Typography>
+                                        <Typography sx={newStyle.tradeTime}>$46.36</Typography>
                                     </Box>
                                     <Box sx={newStyle.averageDetails}>
-                                        <Typography sx={{fontWeight: 700}}>Avrage</Typography>
-                                        <Typography sx={{fontWeight: 700}}>Loss</Typography>
+                                        <Typography sx={newStyle.tradeTitle}>Avrage Loss</Typography>
                                     </Box>
                                     <Box sx={newStyle.averageDetails}>
-                                        <Typography sx={{fontWeight: 700}}>Avrage</Typography>
-                                        <Typography sx={{fontWeight: 700}}>RRR</Typography>
+                                        <Typography sx={newStyle.tradeTitle}>Avrage RRR</Typography>
                                     </Box>
                                 </Box>
                             </Grid>
                             <Grid item lg={6} md={6} xs={12}>
-                                <Box className={styles.summaryBox} sx={{p: 3}}>
+                                <Box sx={newStyle.averagePrice}>
                                     <Grid container>
                                         {tradingFactor?.map((value) => {
                                             return (<Grid item lg={4} md={4} xs={4} sx={newStyle.tradingData}>
-                                                <Typography sx={{fontWeight: 700}}>{value.name}</Typography>
+                                                <Typography sx={newStyle.tradeTitle}>{value.name}</Typography>
                                                 <Typography sx={newStyle.normalData}>{value.data}</Typography>
                                             </Grid>)
                                         })}
@@ -95,13 +92,13 @@ const ProgressiveComponent = () => {
                         </Grid>
 
                         <Grid sx={newStyle.timeBox}>
-                            <Box className={styles.summaryBox} sx={newStyle.timeZoneBox}>
-                                <Typography sx={{fontWeight: 700}}>Time Zone : &nbsp;</Typography>
-                                <Typography sx={newStyle.normalData}> GMT + 0</Typography>
+                            <Box sx={{...newStyle.timeZoneBox, ...newStyle.userBalanceDetails}}>
+                                <Typography sx={newStyle.tradeTitle}>Timeframe : &nbsp;</Typography>
+                                <Typography sx={newStyle.tradeTime}> GMT + 0</Typography>
                             </Box>
                             <Box sx={newStyle.timeZoneBox}>
-                                <Typography sx={{fontWeight: 700}}>Last Update : &nbsp;</Typography>
-                                <Typography sx={newStyle.blueData}>5 Jan 2022 00:00:20:12</Typography>
+                                <Typography sx={newStyle.tradeTitle}>Last Update : &nbsp;</Typography>
+                                <Typography sx={newStyle.tradeTime}>5 Jan 2022 00:00:20:12</Typography>
                             </Box>
                         </Grid>
                     </Paper>
@@ -186,23 +183,23 @@ const newStyle = {
         lineHeight: '1rem',
         padding: '0.25rem 0.75rem',
     },
-    greenData: {fontWeight: '700', color: "#50d71e"},
+    greenData: {fontWeight: '500', color: "#50d71e"},
     blueData: {fontWeight: '700', color: "#0000ff"},
-    normalData: {fontWeight: '700', color: "rgb(100 116 139 / 1)"},
+    normalData: {fontWeight: '500', color: "#3D454E", textAlign: 'center'},
     boxTitle: {fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.75rem', mb: 3},
     paperBox: {
         height: '100%',
         backgroundColor: '#fff',
         p: {sm: 3, xs: 2},
-        border: '1px solid rgba(204, 204, 204, 0.5)',
-        boxShadow: 'rgba(0, 0, 0, 0.07) 0px 8px 13px -3px'
+        boxShadow: 'rgba(0, 0, 0, 0.07) 0px 8px 13px -3px',
+        borderRadius: '10px',
     },
     objectiveDetails: {display: 'flex', justifyContent: 'space-between', pt: {md: 1.3}, pb: {md: 1.3}},
     averagePrice: {
-        border: '2px solid #808080',
-        borderRadius: '20px',
+        border: '1.2px solid #0085FF',
+        borderRadius: '15px',
         p: 3,
-        backgroundColor: 'white',
+        backgroundColor: '#F2F8FB',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-around'
@@ -213,5 +210,8 @@ const newStyle = {
     timeZoneBox: {display: 'flex', p: 4, alignItems: 'center'},
     tradingResult: {display: 'flex', p: 2.5, alignItems: 'center', justifyContent: 'space-between'},
     tradingButton: {borderRadius: '4px', pt: 0.6, pb: 0.6, pr: 1.2, pl: 1.2},
-    tradingSecondBox: {display: 'flex', p: 2.5, alignItems: 'center', justifyContent: 'space-between', mt: 3}
+    tradingSecondBox: {display: 'flex', p: 2.5, alignItems: 'center', justifyContent: 'space-between', mt: 3},
+    userBalanceDetails: {borderRadius: '15px', backgroundColor: '#F2F8FB'},
+    tradeTitle: {fontWeight: '500', color: "#3D454E", opacity: '0.8', fontSize: '14px', textAlign: 'center'},
+    tradeTime: {fontWeight: '700', color: "#0085FF", textAlign: 'center'}
 };

@@ -1,5 +1,6 @@
-import React, { useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useAppContext} from "../../../utilis/ContextState/AppContext";
+import {getPortfolioLedger,pnlPartitionedData} from "../../../utilis/API/Call/apiCall";
 
 
 const initialDetail = [
@@ -11,18 +12,18 @@ const initialDetail = [
 
 const newSelectData = ['Grow', 'Balance', 'Profit', 'DrowDown'];
 
-const initialTradingData = [
+const initialTrading = [
     {name: 'Equity', data: '$12,344,4'},
-    {name: 'Udoras', data: '$52,215.52'},
-    {name: 'No of off', data: '48'},
-    {name: 'Loss', data: '7.09'},
-    {name: 'woin rate', data: '100.00%'},
+    {name: 'Balance', data: '$52,215.52'},
+    {name: 'No of Trades', data: '48'},
+    {name: 'Lots', data: '7.09'},
+    {name: 'Winrate', data: '100.00%'},
     {name: 'Highest', data: '$12,434.34'}];
 
 const tradingFactor = [
-    {name: 'Expectence', data: '$46.36'},
-    {name: 'Fyot Factor', data: '$15,215.52'},
-    {name: 'Noyot', data: '$53.96'}];
+    {name: 'ECurrency', data: '$46.36'},
+    {name: 'Fylfot Facto', data: '$15,215.52'},
+    {name: 'Interest', data: '$53.96'}];
 
 const gainersStokes = [
     {name: "BA", brand: "Boeing", price: 244.52, change: 7.19, changePercent: 3.03},
@@ -33,10 +34,13 @@ const gainersStokes = [
 ];
 
 
-const ProgressiveController = () => {
+const ProgressiveController = ({userAccountData}) => {
     const [progressiveDetail, setprogressiveDetail] = useState(initialDetail);
     const [selectTabs, setSelectTabs] = useState(newSelectData[0]);
     const [gainersStokesData, setGainersStokesData] = useState(gainersStokes);
+    const [portfolioLedger, setPortfolioLedger] = useState({});
+    const [initialTradingData, setInitialTradingData] = useState(initialTrading);
+    const [PLData, setPLData] = useState({});
     const [newState, setNewState] = useState({
         series: [
             {
@@ -45,7 +49,42 @@ const ProgressiveController = () => {
             },
         ],
     });
-    const { state,dispatch} = useAppContext();
+    const {state, dispatch} = useAppContext();
+
+    const fetchData = async () => {
+        try {
+            const [ledgerResponse, pnlResponse] = await Promise.all([
+                getPortfolioLedger(userAccountData?.accounts[0]),
+                pnlPartitionedData(dispatch)
+            ]);
+
+            if (ledgerResponse.data) {
+                setInitialTradingData(tradingValue =>
+                    tradingValue.map(value => {
+                        if (value.name === "Equity") {
+                            return { ...value, data: `$${ledgerResponse.data.BASE?.netliquidationvalue}` };
+                        } else if (value.name === "Balance") {
+                            return { ...value, data: `$${ledgerResponse.data.BASE?.cashbalance}` };
+                        }
+                        return value;
+                    })
+                );
+                setPortfolioLedger(ledgerResponse.data);
+            }
+
+            if (pnlResponse.data?.upnl["DU7621536.Core"]) {
+                setPLData(pnlResponse.data.upnl["DU7621536.Core"]);
+            }
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+    useEffect(() => {
+
+        if (userAccountData?.accounts?.length && !state.loading) {
+            fetchData();
+        }
+    }, [userAccountData]);
 
     const options = {
         legend: {
@@ -53,7 +92,7 @@ const ProgressiveController = () => {
             position: 'top',
             horizontalAlign: 'left',
         },
-        colors: ['#3C50E0', '#80CAEE'],
+        colors: ['#0085FF', '#0085FF'],
         chart: {
             fontFamily: 'Satoshi, sans-serif',
             height: 335,
@@ -157,7 +196,20 @@ const ProgressiveController = () => {
     };
 
 
-    return {progressiveDetail, options, newState, newSelectData, selectTabs, setSelectTabs, initialTradingData, tradingFactor, gainersStokesData,dispatch}
+    return {
+        progressiveDetail,
+        options,
+        newState,
+        newSelectData,
+        selectTabs,
+        setSelectTabs,
+        initialTradingData,
+        tradingFactor,
+        gainersStokesData,
+        dispatch,
+        portfolioLedger,
+        PLData
+    }
 };
 
 export default ProgressiveController;
