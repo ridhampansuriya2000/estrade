@@ -55,15 +55,23 @@ export async function logOutUser(dispatch) {
     }
 }
 
-export async function pnlPartitionedData(dispatch) {
+export async function pnlPartitionedData() {
+
     try {
+        // dispatch({type: 'SET_LOADING', payload: true});
+
         const res = await api.get('iserver/account/pnl/partitioned');
         if (res.statusText !== 'OK') {
             // await logOutUser(dispatch)
         }
+        // dispatch({type: 'SET_LOADING', payload: false});
+
         return {success: true, data: res.data}
     } catch (e) {
         // await logOutUser(dispatch)
+        // dispatch({type: 'SET_LOADING', payload: false});
+
         return {success: false, msg: e.response};
     }
+
 }
