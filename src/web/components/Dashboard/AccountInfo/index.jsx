@@ -4,7 +4,7 @@ import {Box, Grid, Typography} from "@mui/material";
 import styles from "./AccountInfo.module.css";
 import {TradingJournal} from "../../../utilis/Constants/commonData";
 import InstrumentTable from "../../../commonComponent/InstrumentTable";
-import TradingJournalController from "../ProgressiveObjective/TradingJournalController.jsx";
+
 let column = [
     {filedName : 'no_tread_1', title:'No Trades'},
     {filedName : 'result_1', title:'Results'},
@@ -49,46 +49,30 @@ let data = [
 ]
 const AccountInfo = () => {
     const {accountInfo, setAccountInfo} = AccountInfoController();
-    const {options, newState} = TradingJournalController()
     const [valueNew, setvalueNew] = useState(0);
     const handleButtonClick = (index) => {
         setvalueNew(index);
     };
     return (
         <div>
-            AccountInfo
             <Grid container rowSpacing={3} columnSpacing={{sm: 2, md: 3}} >
                 <Grid item md={12}>
                     <Box className={styles.contentBox} >
                         <Grid container md={12} classname={`${styles.width100} ${styles.justifyContent}`}
-                              rowSpacing={3} columnSpacing={{sm: 2, md: 3}}
+                              rowSpacing={2} columnSpacing={{sm: 2, md: 3}}
                         >
                             <Grid item md={2.5} xs={12}>
-                                <Box className={``}>
-                                    {TradingJournal.map((tab, index) => {
-                                        return (
-                                            <Box value={valueNew} onClick={() => {
-                                                handleButtonClick(index)
-                                            }} className={`${styles.flex} ${(valueNew === index) ? styles.paperBoxNew : styles.paperBox}`}>
-                                                <Typography sx={{
-                                                    fontWeight: 700,
-                                                    width: 'max-content',
-                                                    margin: "0px 10px",
-                                                    fontSize: '20px',
-                                                    textTransform: 'capitalize',
-                                                    color: "#3E454D"
-                                                }}>{tab.icon}</Typography>
-                                                <Typography sx={{
-                                                    fontWeight: 700,
-                                                    width: 'max-content',
-                                                    fontSize: '20px',
-                                                    textTransform: 'capitalize',
-                                                    color: "#3E454D"
-                                                }}>{tab.name}</Typography>
-                                            </Box>
-                                        )
-                                    })}
-                                </Box>
+                                {TradingJournal.map((tab, index) => {
+                                    return (
+                                        <Box sx={webStyles.displayButtonMap} value={valueNew} onClick={() => {
+                                            handleButtonClick(index)
+                                        }} className={valueNew === index ? styles.paperBoxNew : styles.paperBox}>
+                                            <Typography
+                                                className={valueNew === index ? styles.iconTabBox : styles.iconTab}>{tab.icon}</Typography>
+                                            <Typography className={styles.tabNameButton}>{tab.name}</Typography>
+                                        </Box>
+                                    )
+                                })}
                             </Grid>
                         </Grid>
                     </Box>
@@ -101,3 +85,14 @@ const AccountInfo = () => {
     );
 };
 export default AccountInfo;
+
+const webStyles = {
+    displayButtonMap: {
+        display: 'flex',
+        backgroundColor: "#f3f8fb",
+        padding: '10px',
+        cursor: "pointer",
+        borderRadius: '10px'
+    },
+    chartSelectDetails: {display: 'flex', justifyContent: 'space-between'},
+}
