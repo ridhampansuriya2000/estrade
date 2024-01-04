@@ -1,0 +1,32 @@
+.flex{
+    display: flex;
+}
+.justifyContent{
+    display: flex;
+    justify-content: center;
+}
+.width100{
+    width: 100%;
+}
+.contentBox{
+    margin-top: 30px;
+    padding: 25px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.12) 10px 10px 43px 10px;
+    border-radius: 20px;
+}
+.paperBox{
+    background-color: #F3F8FB;
+    padding: 13px;
+    margin: 10px 0px;
+    border-radius: 10px;
+    color: #3E454D
+}
+.paperBoxNew{
+    color: #3E454D;
+    background-color: #F3F8FB;
+    padding: 13px;
+    border: 2px solid #3787FA;
+    margin: 10px 0px;
+    border-radius: 10px;
+}

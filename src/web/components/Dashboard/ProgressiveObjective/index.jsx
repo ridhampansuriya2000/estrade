@@ -2,10 +2,11 @@ import React, {useState} from 'react';
 import styles from "./TradingJournal.module.css";
 import {Grid, Box, Typography} from "@mui/material";
 import {TradingJournal} from "../../../utilis/Constants/commonData.jsx";
-import AccountController from "../Account/AccountController.jsx";
-
+import ApexChart from "../../../commonComponent/ApexChart";
+import TradingJournalController from "./TradingJournalController.jsx"
 
 const Account = () => {
+    const {options, newState} = TradingJournalController()
     const [valueNew, setvalueNew] = useState(0);
     const handleButtonClick = (index) => {
         setvalueNew(index);
@@ -13,25 +14,39 @@ const Account = () => {
     return (
         <div>
             <Box className={styles.contentBox}>
-                <Grid container>
+                <Grid container spacing={2}>
                     <Grid item md={2.5} xs={12}>
                         {TradingJournal.map((tab, index) => {
                             return (
-                                <Box sx={{
-                                    display: 'flex',
-                                    backgroundColor: "#f3f8fb",
-                                    padding: '10px',
-                                    cursor: "pointer",
-                                    marginBottom: '10px',
-                                    borderRadius: '10px'
-                                }} value={valueNew} onClick={() => {
+                                <Box sx={webStyles.displayButtonMap} value={valueNew} onClick={() => {
                                     handleButtonClick(index)
                                 }} className={valueNew === index ? styles.paperBoxNew : styles.paperBox}>
-                                    <Typography className={valueNew === index ? styles.iconTabBox : styles.iconTab}>{tab.icon}</Typography>
+                                    <Typography
+                                        className={valueNew === index ? styles.iconTabBox : styles.iconTab}>{tab.icon}</Typography>
                                     <Typography className={styles.tabNameButton}>{tab.name}</Typography>
                                 </Box>
                             )
                         })}
+                    </Grid>
+                    <Grid item md={4.7} xs={12}>
+                        <Box className={styles.Balance}>Balance Curve</Box>
+                        <Box style={{borderRadius: "10px", background: "#F2F8FB"}}>
+                            <Box style={{display: 'flex'}}>
+                                <Box className={styles.balanceTranding}>Balance</Box>
+                                <Box className={styles.TradesName}>No. of Trades</Box>
+                            </Box>
+                            <ApexChart options={options} state={newState}/>
+                        </Box>
+                    </Grid>
+                    <Grid item md={4.7} xs={12}>
+                        <Box className={styles.Balance}>Average</Box>
+                        <Box style={{borderRadius: "10px", background: "#F2F8FB"}}>
+                            <Box style={{display: 'flex'}}>
+                                <Box className={styles.balanceTranding}>Balance</Box>
+                                <Box className={styles.TradesName}>No. of Trades</Box>
+                            </Box>
+                            <ApexChart options={options} state={newState}/>
+                        </Box>
                     </Grid>
                 </Grid>
             </Box>
@@ -345,3 +360,14 @@ const Account = () => {
     )
 }
 export default Account
+
+const webStyles = {
+    displayButtonMap: {
+        display: 'flex',
+        backgroundColor: "#f3f8fb",
+        padding: '10px',
+        cursor: "pointer",
+        borderRadius: '10px'
+    },
+    chartSelectDetails: {display: 'flex', justifyContent: 'space-between'},
+}
