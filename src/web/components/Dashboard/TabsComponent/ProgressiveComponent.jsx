@@ -1,11 +1,10 @@
 import React from 'react';
 import {Grid, Box, Typography, Paper} from "@mui/material";
+import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import ProgressiveController from "./ProgressiveController";
 import styles from "../dashboard.module.css"
 import ApexChart from "../../../commonComponent/ApexChart";
 import SelectTabs from "../../../commonComponent/SelectTabs";
-import {dashboardStokesHeader} from "../../../utilis/Constants/commonData";
-import StokesTable from "../../../commonComponent/StokesTable";
 import Calendar from "../../../commonComponent/Calendar";
 import SummaryData from "../../../commonComponent/SummaryData";
 
@@ -16,13 +15,19 @@ const ProgressiveComponent = ({userAccountData}) => {
     return (<>
         <div>
             <Box sx={{flexGrow: 1}}>
-                <Grid container spacing={2}>
-                    {progressiveDetail.map(value => {
-                        return (<Grid item lg={2.4} sm={6} xs={12}>
+                <Grid container spacing={4}>
+                    {progressiveDetail.map((value, index) => {
+                        return (<Grid item key={index} lg={2.4} sm={6} xs={12}>
                             <Box className={styles.progressiveDetail} sx={{p: 3}}>
-                                <Box sx={{mt: '1rem'}}>
-                                    <Typography sx={newStyle.detailValue}>{value.data}</Typography>
-                                    <Typography style={newStyle.detailTitle}>{value.name}</Typography>
+                                <Box sx={{
+                                    width: '100%',
+                                    textAlign: 'center'
+                                }}>
+                                    <Typography sx={{...newStyle.detailValue, pt: 0.5, pb: 1}}>{value.name}</Typography>
+                                    <Typography sx={value.data === 'In Progress' ? {
+                                        ...newStyle.detailTitle, border: '1.2px solid #0085FF',
+                                        borderRadius: '15px',
+                                    } : {...newStyle.detailTitle}}>{value.data}</Typography>
                                 </Box>
                             </Box>
                         </Grid>)
@@ -108,42 +113,55 @@ const ProgressiveComponent = ({userAccountData}) => {
                 <Grid item lg={5} md={12} sx={{width: '100%'}}>
                     <Paper
                         sx={newStyle.paperBox}>
-                        <Typography sx={newStyle.boxTitle}>Trading Objective</Typography>
-                        <Box className={styles.summaryBox} sx={newStyle.tradingResult}>
-                            <Typography sx={{fontWeight: 700}}>Result : 70 &nbsp;</Typography>
-                            <Box style={{border: '2px solid #50d71e'}} sx={newStyle.tradingButton}>
+                        <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+                            <Typography sx={{...newStyle.boxTitle, mb: 0}}>Trading Objective</Typography>
+                            <Typography sx={{cursor: "pointer"}}><ExpandMoreRoundedIcon
+                                sx={{backgroundColor: "#e5eff5", borderRadius: "7px"}}/></Typography>
+                        </Box>
+                        <Typography sx={{...newStyle.treadingTitle}}>Minimum 10 Trading Days</Typography>
+                        <Typography sx={{...newStyle.treadingDisc}}>Lorem Ipsum is simply dummy text of
+                            the printing and typesetting industry. Lorem Ipsum has been the industry's</Typography>
+                        <Box sx={{...newStyle.profitResult, alignItems: 'center'}}>
+                            <Typography sx={{...newStyle.profitResultTitle}}>Result : 70 &nbsp;</Typography>
+                            <Box sx={{...newStyle.tradingButton, border: '2px solid #50d71e'}}>
                                 <Typography sx={{color: "#50d71e"}}>Passed</Typography>
                             </Box>
                         </Box>
-                        <Box className={styles.summaryBox}
-                             sx={newStyle.tradingSecondBox}>
-                            <Box>
-                                <Typography sx={{fontWeight: 700}}>Max Daily Loss</Typography>
-                                <Typography sx={{fontWeight: 700}}>Result : 400</Typography>
+                        <Box sx={{...newStyle.profitResultProgress, mt: 3}}>
+                            <Box sx={{display: "flex", justifyContent: 'space-between', mb: 1}}>
+                                <div>
+                                    <Typography sx={{...newStyle.profitResultTitle}}>Max Daily Loss -$2,500</Typography>
+                                    <Typography sx={{...newStyle.resultValue}}>Results :
+                                        $480,46</Typography>
+                                </div>
+                                <Box sx={{...newStyle.tradingButton, border: '2px solid #cfcf46'}}>
+                                    <Typography sx={{color: "#cfcf46"}}>In Progress</Typography>
+                                </Box>
                             </Box>
-                            <Box style={{border: '2px solid #cfcf46'}} sx={newStyle.tradingButton}>
-                                <Typography sx={{color: "#cfcf46"}}>In Progress</Typography>
+                            <Typography sx={{textAlign: 'end', fontWeight: '500', fontSize: '12px', color: '#FF3F3F'}}>Time Fixe in :
+                                16:15:04</Typography>
+                            <Box sx={{display: 'grid', pt: 3}}>
+                                <input id="range2" name="range2" type="range" min="0" max="300" value="150" style={{width: '100%'}}/>
+                                <Typography sx={{textAlign: 'end', color: '#3D454E', fontSize: '12px'}}>$2500</Typography>
                             </Box>
                         </Box>
-                        <Box sx={{display: 'flex', pt: 3}}>
-                            <input id="range2" name="range2" type="range" min="0" max="300" value="150" style={{width: '100%'}}/>
-                        </Box>
+
                     </Paper>
                 </Grid>
 
-                <Grid item md={6} sm={12} sx={{width: '100%'}}>
-                    <Paper sx={newStyle.paperBox}>
-                        <Typography sx={newStyle.boxTitle}>Gainers Stokes</Typography>
-                        <StokesTable stokes={'plus'} stokesHeader={dashboardStokesHeader} stokesData={gainersStokesData}/>
-                    </Paper>
-                </Grid>
+                {/*<Grid item md={6} sm={12} sx={{width: '100%'}}>*/}
+                {/*    <Paper sx={newStyle.paperBox}>*/}
+                {/*        <Typography sx={newStyle.boxTitle}>Gainers Stokes</Typography>*/}
+                {/*        <StokesTable stokes={'plus'} stokesHeader={dashboardStokesHeader} stokesData={gainersStokesData}/>*/}
+                {/*    </Paper>*/}
+                {/*</Grid>*/}
 
-                <Grid item md={6} sm={12} sx={{width: '100%'}}>
-                    <Paper sx={newStyle.paperBox}>
-                        <Typography sx={newStyle.boxTitle}>Losers Stokes</Typography>
-                        <StokesTable stokes={'minus'} stokesHeader={dashboardStokesHeader} stokesData={gainersStokesData}/>
-                    </Paper>
-                </Grid>
+                {/*<Grid item md={6} sm={12} sx={{width: '100%'}}>*/}
+                {/*    <Paper sx={newStyle.paperBox}>*/}
+                {/*        <Typography sx={newStyle.boxTitle}>Losers Stokes</Typography>*/}
+                {/*        <StokesTable stokes={'minus'} stokesHeader={dashboardStokesHeader} stokesData={gainersStokesData}/>*/}
+                {/*    </Paper>*/}
+                {/*</Grid>*/}
 
                 <Grid item xs={12} sx={{mt: 5, zIndex: 0}}>
                     <Typography sx={{
@@ -170,8 +188,8 @@ const ProgressiveComponent = ({userAccountData}) => {
 
 export default ProgressiveComponent;
 const newStyle = {
-    detailTitle: {fontWeight: 500, opacity: 0.7, fontSize: '0.775rem', lineHeight: '1.25rem'},
-    detailValue: {fontWeight: 700, fontSize: '24px', lineHeight: '30px', wordBreak: 'break-word'},
+    detailTitle: {fontWeight: 500, fontSize: '16px', color: "#3D454E", backgroundColor: '#F2F8FB', borderRadius: "15px", p: 2.5},
+    detailValue: {fontWeight: 500, fontSize: '15px', wordBreak: 'break-word', color: '#3D454E', opacity: '0.8'},
     chartSelectDetails: {display: 'flex', justifyContent: 'space-between'},
     selectActiveTab: {
         boxShadow: 'rgba(0, 0, 0, 0.07) 0px 8px 13px -3px',
@@ -209,9 +227,15 @@ const newStyle = {
     timeBox: {display: 'flex', justifyContent: 'space-between', mt: 3, flexDirection: {xs: 'column', sm: 'row'}},
     timeZoneBox: {display: 'flex', p: 4, alignItems: 'center'},
     tradingResult: {display: 'flex', p: 2.5, alignItems: 'center', justifyContent: 'space-between'},
-    tradingButton: {borderRadius: '4px', pt: 0.6, pb: 0.6, pr: 1.2, pl: 1.2},
+    tradingButton: {borderRadius: '8px', pt: 0.6, pb: 0.6, pr: 1.2, pl: 1.2, height: 'max-content'},
     tradingSecondBox: {display: 'flex', p: 2.5, alignItems: 'center', justifyContent: 'space-between', mt: 3},
     userBalanceDetails: {borderRadius: '15px', backgroundColor: '#F2F8FB'},
     tradeTitle: {fontWeight: '500', color: "#3D454E", opacity: '0.8', fontSize: '14px', textAlign: 'center'},
-    tradeTime: {fontWeight: '700', color: "#0085FF", textAlign: 'center'}
+    tradeTime: {fontWeight: '700', color: "#0085FF", textAlign: 'center'},
+    profitResult: {display: "flex", justifyContent: 'space-between', backgroundColor: '#F2F8FB', borderRadius: '15px', p: 3,},
+    profitResultProgress: {backgroundColor: '#F2F8FB', borderRadius: '15px', p: 3,},
+    profitResultTitle: {fontWeight: '500', fontSize: '15px', color: "#3D454E", opacity: '0.8'},
+    resultValue: {fontWeight: '500', opacity: '0.5', fontSize: '12px', color: "#3D454E"},
+    treadingTitle: {color: '#3D454E', fontSize: '13px', fontWeight: '500', mb: 2},
+    treadingDisc: {color: '#3D454E', fontSize: '11px', fontWeight: '400', opacity: '0.5'}
 };

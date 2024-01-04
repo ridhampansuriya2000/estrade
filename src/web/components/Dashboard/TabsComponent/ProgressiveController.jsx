@@ -7,7 +7,7 @@ const initialDetail = [
     {name: 'Start Date', data: '1 Feb, 2022'},
     {name: 'End Date', data: '28 Feb, 2022'},
     {name: 'Account Size', data: '$50,000.00'},
-    {name: 'Status', data: 'In Progress'},
+    {name: 'Account Size', data: '$50,000.0'},
     {name: 'Status', data: 'In Progress'}];
 
 const newSelectData = ['Grow', 'Balance', 'Profit', 'DrowDown'];
