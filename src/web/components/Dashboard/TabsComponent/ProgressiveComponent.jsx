@@ -40,7 +40,8 @@ const ProgressiveComponent = ({userAccountData}) => {
                     <Paper sx={newStyle.paperBox}>
                         <Box style={newStyle.chartSelectDetails}>
                             <SelectTabs selectData={newSelectData} selectTabs={selectTabs} setSelectTabs={setSelectTabs}/>
-                            <Box className={styles.tabComponent}><Typography sx={newStyle.selectActiveTab}>Grow v</Typography></Box>
+                            <Box className={styles.tabComponent}>
+                                <Typography sx={{...newStyle.selectActiveTab, ...newStyle.chartGrow}}>Grow <ExpandMoreRoundedIcon/></Typography></Box>
                         </Box>
                         <ApexChart options={options} state={newState}/>
                     </Paper>
@@ -192,7 +193,7 @@ const newStyle = {
     detailValue: {fontWeight: 500, fontSize: '15px', wordBreak: 'break-word', color: '#3D454E', opacity: '0.8'},
     chartSelectDetails: {display: 'flex', justifyContent: 'space-between'},
     selectActiveTab: {
-        boxShadow: 'rgba(0, 0, 0, 0.07) 0px 8px 13px -3px',
+        // boxShadow: 'rgba(0, 0, 0, 0.07) 0px 8px 13px -3px',
         cursor: 'pointer',
         backgroundColor: 'white',
         borderRadius: '0.25rem',
@@ -237,5 +238,12 @@ const newStyle = {
     profitResultTitle: {fontWeight: '500', fontSize: '15px', color: "#3D454E", opacity: '0.8'},
     resultValue: {fontWeight: '500', opacity: '0.5', fontSize: '12px', color: "#3D454E"},
     treadingTitle: {color: '#3D454E', fontSize: '13px', fontWeight: '500', mb: 2},
-    treadingDisc: {color: '#3D454E', fontSize: '11px', fontWeight: '400', opacity: '0.5'}
+    treadingDisc: {color: '#3D454E', fontSize: '11px', fontWeight: '400', opacity: '0.5'},
+    chartGrow: {
+        borderRadius: '8px',
+        height: 'max-content',
+        backgroundColor: '#F2F8FB',
+        display: 'flex',
+        alignItems: 'center',
+    },
 };

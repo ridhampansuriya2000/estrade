@@ -1,14 +1,30 @@
 import React from 'react';
 import {Box, Typography} from "@mui/material";
+import {useLocation, useNavigate} from "react-router";
 
 const DashboardTabs = ({selectData, setValue, currentTab}) => {
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const handleChange = (index) => {
+        setValue(index);
+        navigate(`${location.pathname}?tab=${index}`)
+    };
+
+    React.useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const tabParam = params.get("tab");
+
+        tabParam ? setValue(parseInt(tabParam)) : setValue(0);
+    },[location.search]);
 
     return (
         <>
             <Box style={newStyle.tabComponent}>
                 {selectData?.map((value, index) => {
                     return (<Box key={index} sx={currentTab === index ? newStyle.selectActiveTab : newStyle.selectTab} onClick={() => {
-                        setValue(index)
+                        handleChange(index)
                     }}>
                         <Typography sx={currentTab === index ? newStyle.selectActiveTabTitle : newStyle.selectTabTitle}>{value?.name}</Typography>
                     </Box>)

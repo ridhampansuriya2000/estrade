@@ -13,10 +13,7 @@
 }
 
 .tabComponent {
-    background-color: rgb(245, 247, 253);
     width: max-content;
-    padding: 0.375rem;
-    border-radius: 0.375rem;
     display: flex;
 }
 

@@ -74,11 +74,14 @@ const AccountInfo = () => {
                                     )
                                 })}
                             </Grid>
+                            <Grid item md={9.5} xs={12}>
+                                <Typography sx={{color: '#3D454E',fontWeight: '500'}}>Results by Open</Typography>
+                            </Grid>
                         </Grid>
                     </Box>
                 </Grid>
             </Grid>
-            <Box className={styles.contentBox} >
+            <Box className={styles.contentBox} sx={{mt:3}}>
                 <InstrumentTable column={column} data={data}/>
             </Box>
         </div>

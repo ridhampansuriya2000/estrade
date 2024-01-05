@@ -140,7 +140,7 @@ const newStyle = {
     headerTitle: {
         fontSize: '25px',
         fontStyle: 'normal',
-        fontWeight: '500', pr: 2
+        fontWeight: '600', pr: 2
     },
     headerSubTitle: {
         fontSize: '19px',
