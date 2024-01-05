@@ -5,10 +5,11 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell/TableCell";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
+import {Box} from "@mui/material";
 
-const InstrumentTable = ({data=[],column=[]}) =>{
-    return(
-        <div>
+const InstrumentTable = ({data = [], column = []}) => {
+    return (
+        <Box sx={{display: "flex", width: '100%'}}>
             <TableContainer>
                 <Table sx={{minWidth: 300}} aria-label="simple table">
                     <TableHead sx={{
@@ -22,7 +23,7 @@ const InstrumentTable = ({data=[],column=[]}) =>{
                             borderRadius: "10px",
                             background: "#F2F8FB",
                         }}>
-                            {column?.map((col,index)=>(
+                            {column?.map((col, index) => (
                                 <TableCell sx={{borderBottom: 'none', fontSize: '12px', color: '#64748b', p: {sm: 2, xs: 1}}}>{col?.title}</TableCell>
                             ))}
                         </TableRow>
@@ -31,7 +32,7 @@ const InstrumentTable = ({data=[],column=[]}) =>{
 
                         {data?.map((row) => (
                             <TableRow key={row.name} sx={{'&:last-child td, &:last-child th': {border: 0}}}>
-                                {column?.map((col,index)=>(
+                                {column?.map((col, index) => (
                                     <TableCell component="th" scope="row"
                                                sx={{fontWeight: '600', color: "#1c2434", fontSize: '0.960rem', p: {sm: 2, xs: 1}}}>
                                         {row[col?.filedName]}
@@ -43,7 +44,7 @@ const InstrumentTable = ({data=[],column=[]}) =>{
                     </TableBody>
                 </Table>
             </TableContainer>
-        </div>
+        </Box>
     )
 };
 

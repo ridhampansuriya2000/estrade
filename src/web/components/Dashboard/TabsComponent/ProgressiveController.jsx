@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useAppContext} from "../../../utilis/ContextState/AppContext";
-import {getPortfolioLedger,pnlPartitionedData} from "../../../utilis/API/Call/apiCall";
+import {getPortfolioLedger, pnlPartitionedData} from "../../../utilis/API/Call/apiCall";
 
 
 const initialDetail = [
@@ -40,7 +40,14 @@ const ProgressiveController = ({userAccountData}) => {
     const [gainersStokesData, setGainersStokesData] = useState(gainersStokes);
     const [portfolioLedger, setPortfolioLedger] = useState({});
     const [initialTradingData, setInitialTradingData] = useState(initialTrading);
-    const [PLData, setPLData] = useState({});
+    const [PLData, setPLData] = useState({
+        rowType: 1,
+        dpl: 0.0,
+        nl: 1034000.06,
+        upl: 0.0,
+        el: 1034000.06,
+        mv: 0.0
+    });
     const [newState, setNewState] = useState({
         series: [
             {
@@ -62,9 +69,9 @@ const ProgressiveController = ({userAccountData}) => {
                 setInitialTradingData(tradingValue =>
                     tradingValue.map(value => {
                         if (value.name === "Equity") {
-                            return { ...value, data: `$${ledgerResponse.data.BASE?.netliquidationvalue}` };
+                            return {...value, data: `$${ledgerResponse.data.BASE?.netliquidationvalue}`};
                         } else if (value.name === "Balance") {
-                            return { ...value, data: `$${ledgerResponse.data.BASE?.cashbalance}` };
+                            return {...value, data: `$${ledgerResponse.data.BASE?.cashbalance}`};
                         }
                         return value;
                     })

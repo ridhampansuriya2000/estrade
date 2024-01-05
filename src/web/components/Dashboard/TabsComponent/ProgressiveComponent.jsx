@@ -26,7 +26,7 @@ const ProgressiveComponent = ({userAccountData}) => {
                                     <Typography sx={{...newStyle.detailValue, pt: 0.5, pb: 1}}>{value.name}</Typography>
                                     <Typography sx={value.data === 'In Progress' ? {
                                         ...newStyle.detailTitle, border: '1.2px solid #0085FF',
-                                        borderRadius: '15px',
+                                        borderRadius: '15px', color: '#0085FF'
                                     } : {...newStyle.detailTitle}}>{value.data}</Typography>
                                 </Box>
                             </Box>
@@ -189,11 +189,10 @@ const ProgressiveComponent = ({userAccountData}) => {
 
 export default ProgressiveComponent;
 const newStyle = {
-    detailTitle: {fontWeight: 500, fontSize: '16px', color: "#3D454E", backgroundColor: '#F2F8FB', borderRadius: "15px", p: 2.5},
+    detailTitle: {fontWeight: 600, fontSize: '16px', color: "#3D454E", backgroundColor: '#F2F8FB', borderRadius: "15px", p: 2.5},
     detailValue: {fontWeight: 500, fontSize: '15px', wordBreak: 'break-word', color: '#3D454E', opacity: '0.8'},
     chartSelectDetails: {display: 'flex', justifyContent: 'space-between'},
     selectActiveTab: {
-        // boxShadow: 'rgba(0, 0, 0, 0.07) 0px 8px 13px -3px',
         cursor: 'pointer',
         backgroundColor: 'white',
         borderRadius: '0.25rem',

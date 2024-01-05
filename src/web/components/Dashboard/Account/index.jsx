@@ -160,39 +160,21 @@ const Account = () => {
 
     return (
         <>
-            <Grid container rowSpacing={3} columnSpacing={{sm: 2, md: 3}} >
+            <Grid container rowSpacing={3} columnSpacing={{sm: 2, md: 3}}>
                 <Grid item md={12}>
-                    <Box className={stylesAccount.summaryBox} sx={{p: 2.5}}>
+                    <Box className={stylesAccount.summaryBox} sx={{pt: 2, pb: 2}}>
                         <Grid container md={12} sx={{width: '100%', display: 'flex', justifyContent: 'center'}}
                               rowSpacing={3} columnSpacing={{sm: 2, md: 3}}>
                             <Grid item md={2.5} xs={12}>
-                                <Box>
-                                    {accountAnalysisNew.map((tab, index) => {
-                                        return (
-                                            <Grid item
-                                                  sx={{display: 'flex', backgroundColor: "#f3f8fb", padding: '10px', cursor:"pointer"}}
-                                                  value={valueNew} onClick={() => {
-                                                handleButtonClick(index)
-                                            }} style={valueNew === index ? newStyle.paperBoxNew : newStyle.paperBox}>
-                                                <Typography sx={{
-                                                    fontWeight: 700,
-                                                    width: 'max-content',
-                                                    margin: "0px 10px",
-                                                    fontSize: '20px',
-                                                    textTransform: 'capitalize',
-                                                    color: "#3e454d"
-                                                }}>{tab.icon}</Typography>
-                                                <Typography sx={{
-                                                    fontWeight: 700,
-                                                    width: 'max-content',
-                                                    fontSize: '20px',
-                                                    textTransform: 'capitalize',
-                                                    color: "#3e454d"
-                                                }}>{tab.name}</Typography>
-                                            </Grid>
-                                        )
-                                    })}
-                                </Box>
+                                {accountAnalysisNew.map((tab, index) => {
+                                    return (<Box sx={newStyle.displayButtonMap} value={valueNew} onClick={() => {
+                                        handleButtonClick(index)
+                                    }} className={valueNew === index ? stylesAccount.paperBoxNew : stylesAccount.paperBox}>
+                                        <Typography
+                                            className={valueNew === index ? stylesAccount.iconTabBox : stylesAccount.iconTab}>{tab.icon}</Typography>
+                                        <Typography className={stylesAccount.tabNameButton}>{tab.name}</Typography>
+                                    </Box>)
+                                })}
                             </Grid>
                             <Grid item md={4} xs={12}>
                                 <Box>
@@ -302,9 +284,9 @@ const Account = () => {
                                 <Box style={{display: 'flex', alignItems: "flex-end", height: "100%"}}>
                                     <Box style={{width: '100%'}} className={stylesAccount.summaryBoxNew} sx={{p: 2.5}}>
                                         <Box style={{display: 'flex', alignItems: 'center'}}>
-                                            <img width="30px"
+                                            <img width="25px"
                                                  src='https://cdn2.iconfinder.com/data/icons/material-round-rectangle-world-flags/180/flag-country-nation-us_united_states_america-512.png'/>&nbsp;
-                                            <Box sx={newStyle.greenData}>USD /</Box>&nbsp;<img width="35px"
+                                            <Box sx={newStyle.greenData}>USD /</Box>&nbsp;<img width="25px"
                                                                                                src={european}/>&nbsp;
                                             <Box sx={newStyle.greenData}>JPY</Box>
                                         </Box>
@@ -547,8 +529,8 @@ const newStyle = {
     },
     objectiveDetails: {display: 'flex', justifyContent: 'space-between', pt: {md: 1.3}, pb: {md: 1.3}},
     font13: {fontSize: "14px"},
-    greenData: {fontWeight: 700, color: "black"},
-    greenDataNew: {fontWeight: 700, color: "#626971"},
+    greenData: {fontWeight: 700, color: "#3D454E"},
+    greenDataNew: {fontWeight: 700, color: "#3D454E", opacity: '0.8', fontSize: '12px'},
     greenDataNewUs: {fontWeight: 700, color: "#626971", margin: "10px 0px"},
     greenDataColor: {fontWeight: 700, color: "#2dc341"},
     greenDataColorRed: {fontWeight: 700, color: "#f72145"},
@@ -576,5 +558,13 @@ const newStyle = {
         margin: '10px 0px',
         borderRadius: '10px'
     },
-    boxTitle: {fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.75rem', mb: 3},
+    boxTitle: {fontWeight: '600', fontSize: '1.25rem', lineHeight: '1.75rem', mb: 3, color: "#3D454E"},
+    displayButtonMap: {
+        display: 'flex',
+        backgroundColor: "#f3f8fb",
+        padding: '10px',
+        cursor: "pointer",
+        borderRadius: '10px'
+    },
+    chartSelectDetails: {display: 'flex', justifyContent: 'space-between'},
 };

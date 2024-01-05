@@ -1,63 +1,23 @@
 import React, {useState} from 'react';
-import AccountInfoController from "./AccountInfoController";
 import {Box, Grid, Typography} from "@mui/material";
+import ReactApexChart from 'react-apexcharts';
+import AccountInfoController from "./AccountInfoController";
 import styles from "./AccountInfo.module.css";
 import {TradingJournal} from "../../../utilis/Constants/commonData";
 import InstrumentTable from "../../../commonComponent/InstrumentTable";
 
-let column = [
-    {filedName : 'no_tread_1', title:'No Trades'},
-    {filedName : 'result_1', title:'Results'},
-    {filedName : 'no_tread_2', title:'No Trades'},
-    {filedName : 'result_2', title:'Results'},
-    {filedName : 'no_tread_3', title:'No Trades'},
-    {filedName : 'result_3', title:'Results'},
-];
-let data = [
-    {
-        no_tread_1 : '1',
-        result_1 : '2',
-        no_tread_2 : '3',
-        result_2 : '4',
-        no_tread_3 : '5',
-        result_3 : '6',
-    },
-    {
-        no_tread_1 : '1',
-        result_1 : '1',
-        no_tread_2 : '1',
-        result_2 : '1',
-        no_tread_3 : '1',
-        result_3 : '1',
-    },
-    {
-        no_tread_1 : '1',
-        result_1 : '1',
-        no_tread_2 : '1',
-        result_2 : '1',
-        no_tread_3 : '1',
-        result_3 : '1',
-    },
-    {
-        no_tread_1 : '1',
-        result_1 : '1',
-        no_tread_2 : '1',
-        result_2 : '1',
-        no_tread_3 : '1',
-        result_3 : '1',
-    }
-]
+
 const AccountInfo = () => {
-    const {accountInfo, setAccountInfo} = AccountInfoController();
+    const {accountInfo, setAccountInfo, options, column, data} = AccountInfoController();
     const [valueNew, setvalueNew] = useState(0);
     const handleButtonClick = (index) => {
         setvalueNew(index);
     };
     return (
         <div>
-            <Grid container rowSpacing={3} columnSpacing={{sm: 2, md: 3}} >
+            <Grid container rowSpacing={3} columnSpacing={{sm: 2, md: 3}}>
                 <Grid item md={12}>
-                    <Box className={styles.contentBox} >
+                    <Box className={styles.contentBox}>
                         <Grid container md={12} classname={`${styles.width100} ${styles.justifyContent}`}
                               rowSpacing={2} columnSpacing={{sm: 2, md: 3}}
                         >
@@ -75,15 +35,27 @@ const AccountInfo = () => {
                                 })}
                             </Grid>
                             <Grid item md={9.5} xs={12}>
-                                <Typography sx={{color: '#3D454E',fontWeight: '500'}}>Results by Open</Typography>
+                                <Typography sx={{color: '#3D454E', fontWeight: '600', fontSize: '22px', mb: 2}}>Results by Open</Typography>
+                                <Box sx={{backgroundColor: '#f3f8fb', borderRadius: '10px'}}>
+                                    <ReactApexChart
+                                        options={options.options}
+                                        series={options.series}
+                                        type="candlestick"
+                                        height={350}
+                                    />
+                                </Box>
                             </Grid>
                         </Grid>
                     </Box>
                 </Grid>
+                <Grid item md={2.5} xs={0}></Grid>
+                <Grid item md={9.5} xs={12}>
+                    <Typography sx={{color: '#3D454E', fontWeight: '600', fontSize: '22px', mb: 2}}>Results by Instruments</Typography>
+                    <Box className={styles.contentBox} sx={{mt: 3}}>
+                        <InstrumentTable column={column} data={data}/>
+                    </Box>
+                </Grid>
             </Grid>
-            <Box className={styles.contentBox} sx={{mt:3}}>
-                <InstrumentTable column={column} data={data}/>
-            </Box>
         </div>
     );
 };
