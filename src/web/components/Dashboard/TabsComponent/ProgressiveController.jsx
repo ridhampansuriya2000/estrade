@@ -10,7 +10,7 @@ const initialDetail = [
     {name: 'Account Size', data: '$50,000.0'},
     {name: 'Status', data: 'In Progress'}];
 
-const newSelectData = ['Grow', 'Balance', 'Profit', 'DrowDown'];
+const newSelectData = ['Growth', 'Balance', 'Profit', 'Dropdown'];
 
 const initialTrading = [
     {name: 'Equity', data: '$12,344,4'},

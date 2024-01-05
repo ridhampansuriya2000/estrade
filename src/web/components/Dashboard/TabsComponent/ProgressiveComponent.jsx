@@ -36,24 +36,24 @@ const ProgressiveComponent = ({userAccountData}) => {
             </Box>
 
             <Grid container rowSpacing={3} columnSpacing={{sm: 2, md: 3}} sx={{mt: 1}}>
-                <Grid item lg={7} md={12} sx={{width: '100%'}}>
+                <Grid item lg={7.2} md={12} sx={{width: '100%'}}>
                     <Paper sx={newStyle.paperBox}>
                         <Box style={newStyle.chartSelectDetails}>
                             <SelectTabs selectData={newSelectData} selectTabs={selectTabs} setSelectTabs={setSelectTabs}/>
                             <Box className={styles.tabComponent}>
-                                <Typography sx={{...newStyle.selectActiveTab, ...newStyle.chartGrow}}>Grow <ExpandMoreRoundedIcon/></Typography></Box>
+                                <Typography sx={{...newStyle.selectActiveTab, ...newStyle.chartGrow}}>Loss <ExpandMoreRoundedIcon/></Typography></Box>
                         </Box>
                         <ApexChart options={options} state={newState}/>
                     </Paper>
                 </Grid>
 
-                <Grid item lg={5} md={12} sx={{width: '100%'}}>
+                <Grid item lg={4.8} md={12} sx={{width: '100%'}}>
                     <Paper sx={newStyle.paperBox}>
                         <SummaryData newStyle={newStyle} dispatch={dispatch} PLData={PLData}/>
                     </Paper>
                 </Grid>
 
-                <Grid item lg={7} md={12}>
+                <Grid item lg={7.2} md={12}>
                     <Paper sx={newStyle.paperBox}>
                         <Box sx={{...newStyle.userBalanceDetails, p: 2.5}}>
                             <Grid container spacing={2}>
@@ -111,7 +111,7 @@ const ProgressiveComponent = ({userAccountData}) => {
                 </Grid>
 
 
-                <Grid item lg={5} md={12} sx={{width: '100%'}}>
+                <Grid item lg={4.8} md={12} sx={{width: '100%'}}>
                     <Paper
                         sx={newStyle.paperBox}>
                         <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
@@ -196,7 +196,7 @@ const newStyle = {
         cursor: 'pointer',
         backgroundColor: 'white',
         borderRadius: '0.25rem',
-        fontWeight: '500',
+        fontWeight: '600',
         fontSize: '0.75rem',
         lineHeight: '1rem',
         padding: '0.25rem 0.75rem',

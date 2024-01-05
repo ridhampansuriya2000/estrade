@@ -7,7 +7,7 @@ const SelectTabs = ({selectData, selectTabs, setSelectTabs}) => {
         <>
             <Box style={newStyle.tabComponent}>
                 {selectData?.map((name, index) => {
-                    return (<Box key={index} sx={[selectTabs].includes(name) ? newStyle.selectActiveTab : newStyle.selectTab}
+                    return (<Box key={index} sx={selectTabs === name ? newStyle.selectActiveTab : newStyle.selectTab}
                                  onClick={() => setSelectTabs(name)}>{name}</Box>)
                 })}
             </Box>
@@ -27,22 +27,24 @@ const newStyle = {
         border: '1.2px solid #0085ff00',
         cursor: "pointer",
         fontWeight: 500,
-        fontSize: '0.75rem',
         lineHeight: '1rem',
-        padding:'10px 16px',
-        mr:1,
+        padding: '8px 16px',
+        mr: 1,
+        opacity: 0.5,
+        fontSize: '13px',
     },
     selectActiveTab: {
-        padding:'10px 16px',
+        color: '3D454E',
+        padding: '8px 16px',
         borderRadius: '10px',
         border: '1.2px solid #0085FF',
         backgroundColor: '#F2F8FB',
         boxShadow: '0px 2px 10px 0px rgba(0, 133, 255, 0.10)',
         cursor: "pointer",
-        fontWeight: 500,
-        fontSize: '0.75rem',
+        fontWeight: 600,
         lineHeight: '1rem',
-        mr:1,
+        mr: 1,
+        fontSize: '13px',
     }
 };
 
