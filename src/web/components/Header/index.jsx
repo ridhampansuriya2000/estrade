@@ -13,6 +13,7 @@ import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import user from "../../../assets/Images/user-01.png"
 import logo from "../../../assets/Images/logo/logo-icon.svg";
+import defaultImage from "../../../assets/Images/DefaultUser.png"
 import HeaderController from "./HeaderController"
 import Badges from "../../commonComponent/Badges"
 import Home from "../../../assets/Images/Home.svg"
@@ -34,7 +35,7 @@ const HeaderWeb = ({setOpenNavbar, openNavbar, checkToken}) => {
                 <Grid container xs={12} style={newStyle.headerFlex} width="100%">
                     <Grid style={newStyle.rightHeader}>
                         <Grid sx={{display: {xs: "contents", sm: "none"}}}>
-                            <Box sx={{borderRadius: "0.25rem", border: '1px solid #ccc'}}>
+                            <Box sx={{borderRadius: "0.25rem", border: '1px solid #ccc', display: checkToken ? 'block' : 'none'}}>
                                 <MenuRoundedIcon style={newStyle.headerMenuIcon}
                                                  onClick={(e) => {
                                                      e.stopPropagation();
@@ -47,10 +48,17 @@ const HeaderWeb = ({setOpenNavbar, openNavbar, checkToken}) => {
                         </Grid>
                         <Grid sx={{display: {xs: "none", sm: "contents"}}}>
                             <Typography sx={newStyle.headerTitle}>Account Metric</Typography>
-                            <Divider sx={{width: '2px', borderWidth: '1px', borderColor: "#3D454E", mr: 2,display: {md:"flex",xs:"none"}}} orientation="vertical"
+                            <Divider sx={{
+                                width: '2px',
+                                borderWidth: '1px',
+                                borderColor: "#3D454E",
+                                mr: 2,
+                                display: checkToken ? {md: "flex", xs: "none"} : 'none'
+                            }}
+                                     orientation="vertical"
                                      variant="middle"
                                      flexItem/>
-                            <Box sx={{display: {md:"flex",xs:"none"}}}>
+                            <Box sx={{display: checkToken ? {md: "flex", xs: "none"} : 'none'}}>
                                 <img src={Home}/>
                                 <KeyboardArrowRightRoundedIcon sx={{ml: 1}}/>
                                 <Typography sx={newStyle.headerSubTitle}>Account Metric</Typography>
@@ -61,7 +69,7 @@ const HeaderWeb = ({setOpenNavbar, openNavbar, checkToken}) => {
 
                     <Grid item>
                         <Grid container sx={{display: "flex", alignItems: 'center'}}>
-                            <Grid item sx={{height: 'max-content', pr: {sm: 3, xs: 1}, display: "flex"}}>
+                            <Grid item sx={{height: 'max-content', pr: {sm: 3, xs: 1}, display: checkToken ? 'flex' : 'none'}}>
                                 <Badges style={{marginRight: "10px",}} icon={<SearchOutlinedIcon sx={newStyle.headerIcon}/>}/>
                                 <Badges style={{marginRight: "10px",}} icon={<DarkModeOutlinedIcon sx={newStyle.headerIcon}/>}/>
                                 <Badges style={{marginRight: "10px",}} icon={<SettingsOutlinedIcon sx={newStyle.headerIcon}/>}/>
@@ -69,7 +77,8 @@ const HeaderWeb = ({setOpenNavbar, openNavbar, checkToken}) => {
                             </Grid>
                             <Grid item sx={{display: 'flex', alignItems: 'center'}}>
 
-                                <Avatar alt="Remy Sharp" src={user} sx={{width: 46, height: 46, mr: 1}} onClick={(e) => toggleDropdown(e)}/>
+                                <Avatar alt="Remy Sharp" src={checkToken ? user : defaultImage} sx={{width: 46, height: 46, mr: 1}}
+                                        onClick={(e) => toggleDropdown(e)}/>
 
                                 <div className="dropdown">
                                     <div className="dropbtn" onClick={(e) => toggleDropdown(e)}>
@@ -129,7 +138,7 @@ const newStyle = {
     headerFlex: {display: 'flex', justifyContent: 'space-between'},
     rightHeader: {display: 'flex', alignItems: "center"},
     headerMenuIcon: {fontSize: "30px", color: "rgb(28, 36, 52)", display: "flex", cursor: "pointer"},
-    headerLogo: {maxWidth: '100%', height: 'auto', width: "40px"},
+    headerLogo: {maxWidth: '100%', height: 'auto', width: "45px"},
     headerComponent: {
         p: {xs: 2},
         pr: {lg: 4, xs: 2},
