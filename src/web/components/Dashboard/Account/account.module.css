@@ -100,7 +100,8 @@
 .iconTabBox {
     font-weight: 700;
     width: max-content;
-    padding: 0px 20px;
+    padding-right: 20px;
+    padding-left: 5px;
     font-size: 20px;
     text-transform: capitalize;
     color: #0085FF;
@@ -110,7 +111,8 @@
 .iconTab {
     font-weight: 700;
     width: max-content;
-    padding: 0px 20px;
+    padding-right: 20px;
+    padding-left: 5px;
     font-size: 20px;
     text-transform: capitalize;
     color: #3e454d;

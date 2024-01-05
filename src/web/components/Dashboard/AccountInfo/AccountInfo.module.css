@@ -1,52 +1,64 @@
-.flex{
+.flex {
     display: flex;
 }
-.justifyContent{
+
+.justifyContent {
     display: flex;
     justify-content: center;
 }
-.width100{
+
+.width100 {
     width: 100%;
 }
-.contentBox{
+
+.contentBox {
     display: flex;
     padding: 25px;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.07) 0px 8px 13px -3px;
     border-radius: 20px;
 }
-.paperBox{
+
+.paperBox {
     background-color: #F3F8FB;
     padding: 13px;
     margin: 10px 0px;
     border-radius: 10px;
-    color: #3E454D
+    color: #3E454D;
+    display: flex;
+    border: 2px solid rgba(55, 135, 250, 0);
 }
-.paperBoxNew{
+
+.paperBoxNew {
     color: #3E454D;
     background-color: #F3F8FB;
     padding: 13px;
     border: 2px solid #3787FA;
     margin: 10px 0px;
     border-radius: 10px;
+    display: flex;
 }
 
 .iconTabBox {
     font-weight: 700;
     width: max-content;
-    padding: 0px 20px;
+    padding-right: 20px;
+    padding-left: 5px;
     font-size: 20px;
     text-transform: capitalize;
-    color: #0085FF
+    color: #0085FF;
+    display: flex;
 }
 
 .iconTab {
     font-weight: 700;
     width: max-content;
-    padding: 0px 20px;
+    padding-right: 20px;
+    padding-left: 5px;
     font-size: 20px;
     text-transform: capitalize;
-    color: #3e454d
+    color: #3e454d;
+    display: flex;
 }
 
 .tabNameButton {

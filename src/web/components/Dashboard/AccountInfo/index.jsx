@@ -18,7 +18,7 @@ const AccountInfo = () => {
             <Grid container rowSpacing={3} columnSpacing={{sm: 2, md: 3}}>
                 <Grid item md={12}>
                     <Box className={styles.contentBox}>
-                        <Grid container md={12} classname={`${styles.width100} ${styles.justifyContent}`}
+                        <Grid container classname={`${styles.width100} ${styles.justifyContent}`}
                               rowSpacing={2} columnSpacing={{sm: 2, md: 3}}
                         >
                             <Grid item md={2.5} xs={12}>

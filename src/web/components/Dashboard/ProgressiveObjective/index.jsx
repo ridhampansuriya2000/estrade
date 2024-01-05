@@ -14,7 +14,7 @@ const Account = () => {
     return (
         <div>
             <Box className={styles.contentBox}>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} columnSpacing={{sm: 2, md: 3}}>
                     <Grid item md={2.5} xs={12}>
                         {TradingJournal.map((tab, index) => {
                             return (
@@ -29,7 +29,7 @@ const Account = () => {
                         })}
                     </Grid>
                     <Grid item md={4.7} xs={12}>
-                        <Box className={styles.Balance}>Balance Curve</Box>
+                        <Typography sx={{color: '#3D454E', fontWeight: '600', fontSize: '22px', mb: 2}}>Balance Curve</Typography>
                         <Box style={{borderRadius: "10px", background: "#F2F8FB"}}>
                             <Box style={{display: 'flex'}}>
                                 <Box className={styles.balanceTranding}>Balance</Box>
@@ -39,7 +39,7 @@ const Account = () => {
                         </Box>
                     </Grid>
                     <Grid item md={4.7} xs={12}>
-                        <Box className={styles.Balance}>Average</Box>
+                        <Typography sx={{color: '#3D454E', fontWeight: '600', fontSize: '22px', mb: 2}}>Average</Typography>
                         <Box style={{borderRadius: "10px", background: "#F2F8FB"}}>
                             <Box style={{display: 'flex'}}>
                                 <Box className={styles.balanceTranding}>Balance</Box>
@@ -53,11 +53,11 @@ const Account = () => {
             <Grid container rowSpacing={3} columnSpacing={{sm: 2, md: 3}} sx={{mt: 1}}>
                 <Grid item md={12} lg={7} sx={{width: '100%'}}>
                     <Box className={styles.contentBox}>
-                        <Box className={`${styles.heading2} ${styles.mb10}`}>Basic Information</Box>
+                        <Typography sx={webStyles.detailTitle}>Basic Information</Typography>
                         <Box sx={{
                             overflowX: 'auto'
                         }}>
-                            <Box sx={{display: 'flex', gap: '20px'}}>
+                            <Box sx={{display: 'flex', gap: '20px', mb: 1}}>
                                 <Box className={styles.card1Box}>
                                     <Box className={styles.lable1}>
                                         Login Id
@@ -109,12 +109,11 @@ const Account = () => {
                             </Box>
                         </Box>
 
-                        <Box className={`${styles.heading2} ${styles.mb10} ${styles.mt10}`}>Final
-                            Evaluation</Box>
+                        <Typography sx={webStyles.detailTitle}>Final Evaluation</Typography>
                         <Box sx={{
                             overflowX: 'auto'
                         }}>
-                            <Box sx={{display: 'flex', gap: '20px'}}>
+                            <Box sx={{display: 'flex', gap: '20px', mb: 1}}>
                                 <Box className={styles.card1Box}>
                                     <Box className={styles.lable1}>
                                         Max Daily Loss
@@ -205,11 +204,11 @@ const Account = () => {
                 </Grid>
                 <Grid item md={12} lg={5} sx={{width: '100%'}}>
                     <Box className={styles.contentBox}>
-                        <Box className={`${styles.heading2} ${styles.mb10}`}>Basic Information</Box>
+                        <Typography sx={webStyles.detailTitle}>Basic Information</Typography>
                         <Box sx={{
                             overflowX: 'auto'
                         }}>
-                            <Box sx={{display: 'flex', gap: '20px'}}>
+                            <Box sx={{display: 'flex', gap: '20px', mb: 1}}>
                                 <Box className={styles.card1Box}>
                                     <Box className={styles.lable1}>
                                         Login Id
@@ -261,12 +260,9 @@ const Account = () => {
                             </Box>
                         </Box>
 
-                        <Box className={`${styles.heading2} ${styles.mb10} ${styles.mt10}`}>Final
-                            Evaluation</Box>
-                        <Box sx={{
-                            overflowX: 'auto'
-                        }}>
-                            <Box sx={{display: 'flex', gap: '20px'}}>
+                        <Typography sx={webStyles.detailTitle}>Final Evaluation</Typography>
+                        <Box sx={{overflowX: 'auto'}}>
+                            <Box sx={{display: 'flex', gap: '20px', mb: 1}}>
                                 <Box className={styles.card1Box}>
                                     <Box className={styles.lable1}>
                                         Max Daily Loss
@@ -370,4 +366,5 @@ const webStyles = {
         borderRadius: '10px'
     },
     chartSelectDetails: {display: 'flex', justifyContent: 'space-between'},
-}
+    detailTitle: {color: '#3D454E', fontWeight: '600', fontSize: '22px', mb: 2},
+};

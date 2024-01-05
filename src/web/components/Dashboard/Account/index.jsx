@@ -162,10 +162,10 @@ const Account = () => {
         <>
             <Grid container rowSpacing={3} columnSpacing={{sm: 2, md: 3}}>
                 <Grid item md={12}>
-                    <Box className={stylesAccount.summaryBox} sx={{pt: 2, pb: 2}}>
+                    <Box className={stylesAccount.summaryBox} sx={{pt: 3, pb: 2}}>
                         <Grid container md={12} sx={{width: '100%', display: 'flex', justifyContent: 'center'}}
-                              rowSpacing={3} columnSpacing={{sm: 2, md: 3}}>
-                            <Grid item md={2.5} xs={12}>
+                              rowSpacing={2} columnSpacing={{sm: 2, md: 3}}>
+                            <Grid item md={2.5} xs={12} sx={{paddingLeft: '17px!important'}}>
                                 {accountAnalysisNew.map((tab, index) => {
                                     return (<Box sx={newStyle.displayButtonMap} value={valueNew} onClick={() => {
                                         handleButtonClick(index)

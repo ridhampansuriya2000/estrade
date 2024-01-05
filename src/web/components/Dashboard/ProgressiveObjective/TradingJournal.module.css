@@ -136,25 +136,30 @@
     background-color: #f3f8fb;
     margin: 10px 0px;
     border-radius: 10px;
-    color: #3e454d
+    color: #3e454d;
+    border: 2px solid rgba(0, 133, 255, 0);
 }
 
 .iconTab {
     font-weight: 700;
     width: max-content;
-    padding: 0px 20px;
     font-size: 20px;
     text-transform: capitalize;
-    color: #3e454d
+    color: #3e454d;
+    display: flex;
+    padding-right: 20px;
+    padding-left: 5px;
 }
 
 .iconTabBox {
     font-weight: 700;
     width: max-content;
-    padding: 0px 20px;
+    padding-right: 20px;
+    padding-left: 5px;
     font-size: 20px;
     text-transform: capitalize;
-    color: #0085FF
+    color: #0085FF;
+    display: flex;
 }
 
 .tabNameButton {
@@ -172,6 +177,7 @@
     font-style: normal;
     font-weight: 500;
 }
+
 /*.displayButton{*/
 /*    display: flex;*/
 /*    background-color: #F3F8FB;*/
@@ -195,6 +201,7 @@
     display: flex;
     align-items: center;
 }
+
 .TradesName {
     color: #3D454E;
     font-family: Poppins;
