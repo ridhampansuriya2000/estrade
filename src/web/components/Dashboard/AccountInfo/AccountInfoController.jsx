@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
+import EU from "../../../../assets/Images/EU.svg"
+import JP from "../../../../assets/Images/JP.svg"
+import USA from "../../../../assets/Images/USA.svg"
 
 const AccountInfoController = () => {
     const [accountInfo, setAccountInfo] = useState();
-
+    const [instrumentsCountry, setInstrumentsCountry] = useState(0);
     const options = {
         series: [{
             name: 'category',
@@ -61,7 +64,7 @@ const AccountInfoController = () => {
             },
         },
     };
-    let column = [
+    const column = [
         {filedName: 'no_tread_1', title: 'No Trades'},
         {filedName: 'result_1', title: 'Results'},
         {filedName: 'no_tread_2', title: 'No Trades'},
@@ -69,41 +72,96 @@ const AccountInfoController = () => {
         {filedName: 'no_tread_3', title: 'No Trades'},
         {filedName: 'result_3', title: 'Results'},
     ];
-    let data = [
+    const data = [
         {
-            no_tread_1: '1',
-            result_1: '2',
-            no_tread_2: '3',
-            result_2: '4',
-            no_tread_3: '5',
-            result_3: '6',
+            no_tread_1: '01',
+            result_1: '-$50.20',
+            no_tread_2: '01',
+            result_2: '-$50.20',
+            no_tread_3: '01',
+            result_3: '-$50.20',
         },
         {
-            no_tread_1: '1',
-            result_1: '1',
-            no_tread_2: '1',
-            result_2: '1',
-            no_tread_3: '1',
-            result_3: '1',
+            no_tread_1: '01',
+            result_1: '-$50.20',
+            no_tread_2: '01',
+            result_2: '-$50.20',
+            no_tread_3: '01',
+            result_3: '-$50.20',
         },
         {
-            no_tread_1: '1',
-            result_1: '1',
-            no_tread_2: '1',
-            result_2: '1',
-            no_tread_3: '1',
-            result_3: '1',
+            no_tread_1: '01',
+            result_1: '-$50.20',
+            no_tread_2: '01',
+            result_2: '-$50.20',
+            no_tread_3: '01',
+            result_3: '-$50.20',
         },
         {
-            no_tread_1: '1',
-            result_1: '1',
-            no_tread_2: '1',
-            result_2: '1',
-            no_tread_3: '1',
-            result_3: '1',
-        }
-    ]
-    return {accountInfo, setAccountInfo, options, column, data}
+            no_tread_1: '01',
+            result_1: '-$50.20',
+            no_tread_2: '01',
+            result_2: '-$50.20',
+            no_tread_3: '01',
+            result_3: '-$50.20',
+        },
+        {
+            no_tread_1: '01',
+            result_1: '-$50.20',
+            no_tread_2: '01',
+            result_2: '-$50.20',
+            no_tread_3: '01',
+            result_3: '-$50.20',
+        },  {
+            no_tread_1: '01',
+            result_1: '-$50.20',
+            no_tread_2: '01',
+            result_2: '-$50.20',
+            no_tread_3: '01',
+            result_3: '-$50.20',
+        },  {
+            no_tread_1: '01',
+            result_1: '-$50.20',
+            no_tread_2: '01',
+            result_2: '-$50.20',
+            no_tread_3: '01',
+            result_3: '-$50.20',
+        },  {
+            no_tread_1: '01',
+            result_1: '-$50.20',
+            no_tread_2: '01',
+            result_2: '-$50.20',
+            no_tread_3: '01',
+            result_3: '-$50.20',
+        },  {
+            no_tread_1: '01',
+            result_1: '-$50.20',
+            no_tread_2: '01',
+            result_2: '-$50.20',
+            no_tread_3: '01',
+            result_3: '-$50.20',
+        },  {
+            no_tread_1: '01',
+            result_1: '-$50.20',
+            no_tread_2: '01',
+            result_2: '-$50.20',
+            no_tread_3: '01',
+            result_3: '-$50.20',
+        },
+    ];
+    const InstrumentsCountry = [
+        {from: {name: "EUR", img: EU}, to: {name: "JPY", img: JP}},
+        {from: {name: "EUR", img: EU}, to: {name: "USD", img: USA}},
+        {from: {name: "EUR", img: EU}, to: {name: "USD", img: USA}},
+        {from: {name: "EUR", img: EU}, to: {name: "USD", img: USA}},
+        {from: {name: "EUR", img: EU}, to: {name: "USD", img: USA}},
+        {from: {name: "EUR", img: EU}, to: {name: "USD", img: USA}},
+        {from: {name: "EUR", img: EU}, to: {name: "USD", img: USA}},
+        {from: {name: "EUR", img: EU}, to: {name: "USD", img: USA}},
+        {from: {name: "EUR", img: EU}, to: {name: "USD", img: USA}},
+        {from: {name: "EUR", img: EU}, to: {name: "USD", img: USA}},
+    ];
+    return {accountInfo, setAccountInfo, options, column, data, InstrumentsCountry,instrumentsCountry, setInstrumentsCountry}
 };
 
 export default AccountInfoController;

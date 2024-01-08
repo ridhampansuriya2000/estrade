@@ -38,7 +38,7 @@ const ProgressiveComponent = ({userAccountData}) => {
             <Grid container rowSpacing={3} columnSpacing={{sm: 2, md: 3}} sx={{mt: 1}}>
                 <Grid item lg={7.2} md={12} sx={{width: '100%'}}>
                     <Paper sx={newStyle.paperBox}>
-                        <Box style={newStyle.chartSelectDetails}>
+                        <Box style={newStyle.chartSelectDetails} sx={{flexDirection: {xs: 'column', sm: 'row'}}}>
                             <SelectTabs selectData={newSelectData} selectTabs={selectTabs} setSelectTabs={setSelectTabs}/>
                             <Box className={styles.tabComponent}>
                                 <Typography sx={{...newStyle.selectActiveTab, ...newStyle.chartGrow}}>Loss <ExpandMoreRoundedIcon/></Typography></Box>
