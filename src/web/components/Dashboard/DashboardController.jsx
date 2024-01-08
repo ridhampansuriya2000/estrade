@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getAccountData} from "../../utilis/API/Call/apiCall";
+import {authStatus, getAccountData} from "../../utilis/API/Call/apiCall";
 import {useAppContext} from "../../utilis/ContextState/AppContext";
 
 const DashboardController = () => {
@@ -9,18 +9,23 @@ const DashboardController = () => {
     const {state, dispatch} = useAppContext();
 
     useEffect(() => {
-        async function fetchData() {
-            setCallApi(true)
-            const response = await getAccountData()
-            if (response?.data) {
-                setUserAccountData(response?.data)
-            }
-            setCallApi(false)
-        }
+        (async () => {
+            dispatch({type: 'SET_LOADING', payload: true});
+            try {
+                const response = await getAccountData(dispatch);
+                if (response?.data) {
+                    dispatch({type: 'SET_LOADING', payload: false});
+                    setUserAccountData(response.data);
+                }
+            } catch (e) {
+                dispatch({type: 'SET_LOADING', payload: false});
 
-        if (!userAccountData?.accounts && !callApi && !state.loading) {
-            fetchData();
-        }
+            } finally {
+                dispatch({type: 'SET_LOADING', payload: false});
+            }
+
+        })()
+
     }, []);
 
     return {

@@ -1,11 +1,15 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useState} from 'react';
+import dayjs from 'dayjs';
+import {DemoContainer, DemoItem} from '@mui/x-date-pickers/internals/demo';
+import {DateCalendar} from '@mui/x-date-pickers/DateCalendar';
+import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
+import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
+import {Table} from 'antd';
+import {Grid, Box, Typography} from "@mui/material";
 import AccountController from "./AccountController"
 import {accountAnalysisNew} from "../../../utilis/Constants/commonData"
 import stylesAccount from "./account.module.css";
 import european from "../../../../assets/Images/european-union.png";
-import Datepicker from 'flowbite-datepicker/Datepicker';
-import {Table} from 'antd';
-import {Grid, Box, Typography} from "@mui/material";
 
 const columns = [
     {
@@ -137,35 +141,39 @@ const onChange = (pagination, filters, sorter, extra) => {
 
 const Account = () => {
     const [valueNew, setvalueNew] = useState(0);
-
+    const [selectedDate, setSelectedDate] = useState(dayjs());
+    const [displayedMonth, setDisplayedMonth] = useState(selectedDate);
     const {activeStep, setActiveStep} = AccountController();
+
+
+    const handleMonthChange = (newDate) => {
+        setDisplayedMonth(newDate);
+    };
+
+    const handleNextMonth = () => {
+        const nextMonth = displayedMonth.add(1, 'month');
+        setDisplayedMonth(nextMonth);
+    };
+
+    const handlePrevMonth = () => {
+        const prevMonth = displayedMonth.subtract(1, 'month');
+        setDisplayedMonth(prevMonth);
+    };
+
 
     const handleButtonClick = (index) => {
         setvalueNew(index);
     };
 
-    const datepickerRef = useRef(null);
-
-    useEffect(() => {
-        if (datepickerRef.current) {
-            const myDatepicker = new Datepicker(datepickerRef.current, {
-                format: 'yyyy-mm-dd',
-            });
-
-            // myDatepicker.on('change', (selectedDate) => {
-            //     console.log('Selected date:', selectedDate);
-            // });
-        }
-    }, [datepickerRef]);
 
     return (
         <>
             <Grid container rowSpacing={3} columnSpacing={{sm: 2, md: 3}}>
                 <Grid item md={12}>
-                    <Box className={stylesAccount.summaryBox} sx={{pt: 3, pb: 2}}>
+                    <Box className={stylesAccount.summaryBox} sx={{p: 3}}>
                         <Grid container md={12} sx={{width: '100%', display: 'flex', justifyContent: 'center'}}
                               rowSpacing={2} columnSpacing={{sm: 2, md: 3}}>
-                            <Grid item md={2.5} xs={12} sx={{paddingLeft: '17px!important'}}>
+                            <Grid item md={2.5} xs={12} sx={{paddingLeft: {md: '0px!important', xs: '10px!important'}}}>
                                 {accountAnalysisNew.map((tab, index) => {
                                     return (<Box sx={newStyle.displayButtonMap} value={valueNew} onClick={() => {
                                         handleButtonClick(index)
@@ -321,180 +329,200 @@ const Account = () => {
                 </Grid>
             </Grid>
 
-
             <Grid container rowSpacing={3} columnSpacing={{sm: 2, md: 3}} sx={{mt: 1}}>
                 <Grid item md={12} sx={{width: '100%'}}>
                     <Box className={stylesAccount.summaryBox} sx={{p: 2.5, width: '100%',}}>
-                        <Box sx={newStyle.timeBox}>
-                            <Box className={stylesAccount.summaryBoxNew1} sx={newStyle.timeZoneBox}>
-                                &lt; Augest 2023 &gt;
-                            </Box>
-                            <Box className={stylesAccount.summaryBoxNew1} sx={newStyle.timeZoneBox1}>
-                                Tuesday, 2023
-                            </Box>
-                        </Box>
                         <Grid container rowSpacing={3} columnSpacing={{sm: 2, md: 3}}>
                             <Grid item md={3} xs={12}>
-                                <Box style={{display: 'flex', justifyContent: "", height: "100%"}}>
-                                    <Box style={{width: '100%'}} className={stylesAccount.summaryBoxNew} sx={{p: 2.5}}>
-                                        31321
+
+                                <Box style={{display: 'flex', paddingBottom: '15px'}}>
+                                    <Box className={stylesAccount.summaryBoxNew1} sx={{display: 'flex', p: 2, alignItems: 'center'}}>
+                                        &lt; Augest 2023 &gt;
+                                    </Box>
+                                </Box>
+                                <Box style={{display: 'flex', justifyContent: "CENTER"}}>
+                                    <Box style={{width: '100%', height: "100%"}} className={stylesAccount.summaryBoxNew}>
+                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                            <DemoContainer components={['DateCalendar', 'DateCalendar', 'DateCalendar']}>
+                                                <DemoItem label={''}>
+                                                    <DateCalendar style={{display: 'flex', justifyContent: 'center', width: '100%'}} views={['day']}
+                                                                  value={selectedDate}
+                                                                  onChange={(date) => setSelectedDate(date)}
+                                                                  onViewChange={handleMonthChange}
+                                                        // view={displayedMonth}
+                                                                  renderDay={(day, _value, DayComponentProps) =>
+                                                                      <span {...DayComponentProps}>{day}</span>}
+                                                    />
+                                                </DemoItem>
+                                            </DemoContainer>
+                                        </LocalizationProvider>
                                     </Box>
                                 </Box>
                             </Grid>
-                            <Grid item xs={12} md={9}>
-                                <Box sx={{
-                                    overflowX: 'auto'
-                                }}>
-
-                                    <Box className={stylesAccount.allDate} style={{display: 'flex'}}>
-                                        <Box className={stylesAccount.widthBox}>
-                                            <Box className={stylesAccount.dayRewanuCard} sx={{p: 2.5}}>
-                                                <Box sx={newStyle.greenData}
-                                                     style={{display: 'flex', justifyContent: 'end'}}>04</Box>
-                                                <Box sx={newStyle.greenDataNew} style={{
-                                                    display: 'flex',
-                                                    justifyContent: 'end',
-                                                    marginBottom: '30px',
-                                                    opacity: '0.5',
-                                                }}>Tuesday</Box>
-                                                <Box sx={newStyle.greenData}>$122.5K</Box>
-                                            </Box>
+                            <Grid item md={9} xs={12}>
+                                <Box style={{}}>
+                                    <Box sx={{display: 'flex', justifyContent: 'end'}}>
+                                        <Box className={stylesAccount.summaryBoxNew1} sx={newStyle.timeZoneBox1}>
+                                            Tuesday, 2023
                                         </Box>
-                                        <Box className={stylesAccount.widthBox}>
-                                            <Box sx={newStyle.timeZoneDay} className={stylesAccount.summaryBoxNew1}>
-                                                <Box className={stylesAccount.dayRewanuCard} sx={{p: 2.5}}>
-                                                    <Box style={{display: 'flex', justifyContent: 'end'}}>
-                                                        <Box sx={newStyle.timeZoneDate}>11</Box>
+                                    </Box>
+                                    <Box>
+                                        <Box sx={{
+                                            overflowX: 'auto'
+                                        }}>
+
+                                            <Box className={stylesAccount.allDate} style={{display: 'flex'}}>
+                                                <Box className={stylesAccount.widthBox}>
+                                                    <Box className={stylesAccount.dayRewanuCard} sx={{p: 2.5}}>
+                                                        <Box sx={newStyle.greenData}
+                                                             style={{display: 'flex', justifyContent: 'end'}}>04</Box>
+                                                        <Box sx={newStyle.greenDataNew} style={{
+                                                            display: 'flex',
+                                                            justifyContent: 'end',
+                                                            marginBottom: '30px',
+                                                            opacity: '0.5',
+                                                        }}>Tuesday</Box>
+                                                        <Box sx={newStyle.greenData}>$122.5K</Box>
                                                     </Box>
-                                                    <Box sx={newStyle.greenData}>$122.5K</Box>
-                                                    <Box
-                                                        sx={{...newStyle.greenDatagrren, ...newStyle.font13}}>$126/Profit</Box>
-                                                    <Box sx={{...newStyle.greenDatagrren, ...newStyle.font13}}>$126.1/2nd
-                                                        Profit</Box>
+                                                </Box>
+                                                <Box className={stylesAccount.widthBox}>
+                                                    <Box sx={newStyle.timeZoneDay} className={stylesAccount.summaryBoxNew1}>
+                                                        <Box className={stylesAccount.dayRewanuCard} sx={{p: 2.5}}>
+                                                            <Box style={{display: 'flex', justifyContent: 'end'}}>
+                                                                <Box sx={newStyle.timeZoneDate}>11</Box>
+                                                            </Box>
+                                                            <Box sx={newStyle.greenData}>$122.5K</Box>
+                                                            <Box
+                                                                sx={{...newStyle.greenDatagrren, ...newStyle.font13}}>$126/Profit</Box>
+                                                            <Box sx={{...newStyle.greenDatagrren, ...newStyle.font13}}>$126.1/2nd
+                                                                Profit</Box>
+                                                        </Box>
+                                                    </Box>
+                                                </Box>
+                                                <Box className={stylesAccount.widthBox}>
+                                                    <Box className={stylesAccount.dayRewanuCard} sx={{p: 2.5}}>
+                                                        <Box sx={newStyle.greenData}
+                                                             style={{display: 'flex', justifyContent: 'end'}}>06</Box>
+                                                        <Box sx={newStyle.greenDataNew} style={{
+                                                            display: 'flex',
+                                                            justifyContent: 'end',
+                                                            marginBottom: '30px',
+                                                            opacity: '0.5',
+                                                        }}>Tuesday</Box>
+                                                        <Box sx={newStyle.greenData}>$122.5K</Box>
+                                                    </Box>
+                                                </Box>
+                                                <Box className={stylesAccount.widthBox}>
+                                                    <Box className={stylesAccount.dayRewanuCard} sx={{p: 2.5}}>
+                                                        <Box sx={newStyle.greenData}
+                                                             style={{display: 'flex', justifyContent: 'end'}}>05</Box>
+                                                        <Box sx={newStyle.greenDataNew} style={{
+                                                            display: 'flex',
+                                                            justifyContent: 'end',
+                                                            marginBottom: '30px',
+                                                            opacity: '0.5',
+                                                        }}>Tuesday</Box>
+                                                        <Box sx={newStyle.greenData}>$122.5K</Box>
+                                                    </Box>
+                                                </Box>
+                                                <Box className={stylesAccount.widthBox}>
+                                                    <Box className={stylesAccount.dayRewanuCard} sx={{p: 2.5}}>
+                                                        <Box sx={newStyle.greenData}
+                                                             style={{display: 'flex', justifyContent: 'end'}}>04</Box>
+                                                        <Box sx={newStyle.greenDataNew} style={{
+                                                            display: 'flex',
+                                                            justifyContent: 'end',
+                                                            marginBottom: '30px',
+                                                            opacity: '0.5',
+                                                        }}>Tuesday</Box>
+                                                        <Box sx={newStyle.greenData}>$122.5K</Box>
+                                                    </Box>
+                                                </Box>
+                                                <Box className={stylesAccount.widthBox}>
+                                                    <Box className={stylesAccount.dayRewanuCard} sx={{p: 2.5}}>
+                                                        <Box sx={newStyle.greenData}
+                                                             style={{display: 'flex', justifyContent: 'end'}}>03</Box>
+                                                        <Box sx={newStyle.greenDataNew} style={{
+                                                            display: 'flex',
+                                                            justifyContent: 'end',
+                                                            marginBottom: '30px',
+                                                            opacity: '0.5',
+                                                        }}>Tuesday</Box>
+                                                        <Box sx={newStyle.greenData}>$122.5K</Box>
+                                                    </Box>
+                                                </Box>
+                                                <Box className={stylesAccount.widthBox}>
+                                                    <Box className={stylesAccount.dayRewanuCard} sx={{p: 2.5}}>
+                                                        <Box sx={newStyle.greenData}
+                                                             style={{display: 'flex', justifyContent: 'end'}}>02</Box>
+                                                        <Box sx={newStyle.greenDataNew} style={{
+                                                            display: 'flex',
+                                                            justifyContent: 'end',
+                                                            marginBottom: '30px',
+                                                            opacity: '0.5',
+                                                        }}>Tuesday</Box>
+                                                        <Box sx={newStyle.greenData}>$122.5K</Box>
+                                                    </Box>
                                                 </Box>
                                             </Box>
                                         </Box>
-                                        <Box className={stylesAccount.widthBox}>
-                                            <Box className={stylesAccount.dayRewanuCard} sx={{p: 2.5}}>
-                                                <Box sx={newStyle.greenData}
-                                                     style={{display: 'flex', justifyContent: 'end'}}>06</Box>
-                                                <Box sx={newStyle.greenDataNew} style={{
-                                                    display: 'flex',
-                                                    justifyContent: 'end',
-                                                    marginBottom: '30px',
-                                                    opacity: '0.5',
-                                                }}>Tuesday</Box>
-                                                <Box sx={newStyle.greenData}>$122.5K</Box>
-                                            </Box>
-                                        </Box>
-                                        <Box className={stylesAccount.widthBox}>
-                                            <Box className={stylesAccount.dayRewanuCard} sx={{p: 2.5}}>
-                                                <Box sx={newStyle.greenData}
-                                                     style={{display: 'flex', justifyContent: 'end'}}>05</Box>
-                                                <Box sx={newStyle.greenDataNew} style={{
-                                                    display: 'flex',
-                                                    justifyContent: 'end',
-                                                    marginBottom: '30px',
-                                                    opacity: '0.5',
-                                                }}>Tuesday</Box>
-                                                <Box sx={newStyle.greenData}>$122.5K</Box>
-                                            </Box>
-                                        </Box>
-                                        <Box className={stylesAccount.widthBox}>
-                                            <Box className={stylesAccount.dayRewanuCard} sx={{p: 2.5}}>
-                                                <Box sx={newStyle.greenData}
-                                                     style={{display: 'flex', justifyContent: 'end'}}>04</Box>
-                                                <Box sx={newStyle.greenDataNew} style={{
-                                                    display: 'flex',
-                                                    justifyContent: 'end',
-                                                    marginBottom: '30px',
-                                                    opacity: '0.5',
-                                                }}>Tuesday</Box>
-                                                <Box sx={newStyle.greenData}>$122.5K</Box>
-                                            </Box>
-                                        </Box>
-                                        <Box className={stylesAccount.widthBox}>
-                                            <Box className={stylesAccount.dayRewanuCard} sx={{p: 2.5}}>
-                                                <Box sx={newStyle.greenData}
-                                                     style={{display: 'flex', justifyContent: 'end'}}>03</Box>
-                                                <Box sx={newStyle.greenDataNew} style={{
-                                                    display: 'flex',
-                                                    justifyContent: 'end',
-                                                    marginBottom: '30px',
-                                                    opacity: '0.5',
-                                                }}>Tuesday</Box>
-                                                <Box sx={newStyle.greenData}>$122.5K</Box>
-                                            </Box>
-                                        </Box>
-                                        <Box className={stylesAccount.widthBox}>
-                                            <Box className={stylesAccount.dayRewanuCard} sx={{p: 2.5}}>
-                                                <Box sx={newStyle.greenData}
-                                                     style={{display: 'flex', justifyContent: 'end'}}>02</Box>
-                                                <Box sx={newStyle.greenDataNew} style={{
-                                                    display: 'flex',
-                                                    justifyContent: 'end',
-                                                    marginBottom: '30px',
-                                                    opacity: '0.5',
-                                                }}>Tuesday</Box>
-                                                <Box sx={newStyle.greenData}>$122.5K</Box>
-                                            </Box>
-                                        </Box>
-                                    </Box>
-                                </Box>
-                                <Box sx={{
-                                    overflowX: 'auto'
-                                }}>
-                                    <Box className={stylesAccount.tradInfo}>
-                                        <div>
-                                            <div className={stylesAccount.tradInfoTitle}>
-                                                Total Trades
-                                            </div>
-                                            <div className={stylesAccount.tradInfoTextData}>
-                                                12,000
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div className={stylesAccount.tradInfoTitle}>
-                                                Gross P&L
-                                            </div>
-                                            <div className={stylesAccount.tradInfoTextData}>
-                                                $3,110,320
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div className={stylesAccount.tradInfoTitle}>
-                                                Volume
-                                            </div>
-                                            <div className={stylesAccount.tradInfoTextData}>
-                                                30,21,980
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div className={stylesAccount.tradInfoTitle} style={{color: '#08C031'}}>
-                                                Winners
-                                            </div>
-                                            <div className={stylesAccount.tradInfoTextData}>
-                                                30.000
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div className={stylesAccount.tradInfoTitle} style={{color: '#FF3F3F'}}>
-                                                Losers
-                                            </div>
-                                            <div className={stylesAccount.tradInfoTextData}>
-                                                30.21,020
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div className={stylesAccount.tradInfoTitle}>
-                                                Commissions
-                                            </div>
-                                            <div className={stylesAccount.tradInfoTextData}>
-                                                $0
-                                            </div>
-                                        </div>
+                                        <Box sx={{
+                                            overflowX: 'auto'
+                                        }}>
+                                            <Box className={stylesAccount.tradInfo}>
+                                                <div>
+                                                    <div className={stylesAccount.tradInfoTitle}>
+                                                        Total Trades
+                                                    </div>
+                                                    <div className={stylesAccount.tradInfoTextData}>
+                                                        12,000
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className={stylesAccount.tradInfoTitle}>
+                                                        Gross P&L
+                                                    </div>
+                                                    <div className={stylesAccount.tradInfoTextData}>
+                                                        $3,110,320
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className={stylesAccount.tradInfoTitle}>
+                                                        Volume
+                                                    </div>
+                                                    <div className={stylesAccount.tradInfoTextData}>
+                                                        30,21,980
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className={stylesAccount.tradInfoTitle} style={{color: '#08C031'}}>
+                                                        Winners
+                                                    </div>
+                                                    <div className={stylesAccount.tradInfoTextData}>
+                                                        30.000
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className={stylesAccount.tradInfoTitle} style={{color: '#FF3F3F'}}>
+                                                        Losers
+                                                    </div>
+                                                    <div className={stylesAccount.tradInfoTextData}>
+                                                        30.21,020
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className={stylesAccount.tradInfoTitle}>
+                                                        Commissions
+                                                    </div>
+                                                    <div className={stylesAccount.tradInfoTextData}>
+                                                        $0
+                                                    </div>
+                                                </div>
 
+                                            </Box>
+                                        </Box>
                                     </Box>
+
                                 </Box>
                             </Grid>
                         </Grid>

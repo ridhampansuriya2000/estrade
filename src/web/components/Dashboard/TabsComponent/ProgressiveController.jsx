@@ -60,11 +60,17 @@ const ProgressiveController = ({userAccountData}) => {
 
     const fetchData = async () => {
         try {
-            const [ledgerResponse, pnlResponse] = await Promise.all([
-                getPortfolioLedger(userAccountData?.accounts[0]),
-                pnlPartitionedData(dispatch)
-            ]);
-
+            const pnlResponse = await pnlPartitionedData()
+            if (pnlResponse.data?.upnl["DU7621536.Core"]) {
+                setPLData(pnlResponse.data.upnl["DU7621536.Core"]);
+            }
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+    const fetchLedgerData = async () => {
+        try {
+            const ledgerResponse = await getPortfolioLedger(userAccountData?.accounts[0])
             if (ledgerResponse.data) {
                 setInitialTradingData(tradingValue =>
                     tradingValue.map(value => {
@@ -76,22 +82,21 @@ const ProgressiveController = ({userAccountData}) => {
                         return value;
                     })
                 );
-                setPortfolioLedger(ledgerResponse.data);
-            }
-
-            if (pnlResponse.data?.upnl["DU7621536.Core"]) {
-                setPLData(pnlResponse.data.upnl["DU7621536.Core"]);
             }
         } catch (error) {
-            console.error("Error fetching data:", error);
+           console.error("Error fetching data:", error);
         }
     };
-    useEffect(() => {
 
-        if (userAccountData?.accounts?.length && !state.loading) {
-            fetchData();
-        }
-    }, [userAccountData]);
+    useEffect(() => {
+        (async () => {
+            await fetchData();
+            if (userAccountData?.accounts?.length && !state.loading) {
+                await fetchLedgerData();
+            }
+        })()
+
+    }, []);
 
     const options = {
         legend: {

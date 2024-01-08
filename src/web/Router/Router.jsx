@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react';
-import {BrowserRouter as Routers, Navigate, Route, Routes, useLocation} from 'react-router-dom';
-import {createBrowserHistory} from 'history';
+import React, {useEffect, useState} from 'react';
+import {BrowserRouter as Routers, Navigate, Route, Routes} from 'react-router-dom';
 import Layout from "../components/Layout";
 import {OpenRoutes, VerifyRoutes} from "../utilis/Constants/AllRoutes"
 import Loader from "../commonComponent/Loader";
@@ -8,78 +7,56 @@ import Error from "../components/404/index"
 import {useAppContext} from "../utilis/ContextState/AppContext";
 import LocalStorageManager from "../utilis/LocalStorage/LocatStorage";
 import {authStatus} from "../utilis/API/Call/apiCall";
+import PrivateRoute from "./PrivateRoute"
 
-
-const history = createBrowserHistory();
 
 const Router = () => {
+    const [startProject, setStartProject] = useState(false);
+    const [startLoader, setStartLoader] = useState(false);
     const {state, dispatch} = useAppContext();
     const checkToken = LocalStorageManager.getLocalStorage('estrade_authorized') === true;
 
 
     useEffect(() => {
+        const checkToken = LocalStorageManager.getLocalStorage('estrade_authorized') === true;
         const fetchData = async () => {
             const response = await authStatus(dispatch);
             if (response) {
+                setStartLoader(false)
+                setStartProject(true)
                 dispatch({type: 'SET_USER_VERIFY'})
+            } else {
+                setStartLoader(false)
             }
         };
-
-        // if (!checkToken) {
-        fetchData();
-        // }
+        if (checkToken) {
+            setStartLoader(true)
+            fetchData();
+        } else if (!startProject) {
+            setStartProject(true)
+        }
         return () => {
         };
     }, []);
 
-
-    const WithToken = ({children}) => {
-        return checkToken ? children : <Navigate to="/login"/>
-    };
-
-    const WithoutToken = ({children}) => {
-        return !checkToken ? children : <Navigate to="/dashboard"/>
-    };
-
-    const NoPage = ({children}) => {
-        const location = useLocation();
-        const check = VerifyRoutes.map(({path}) => path).concat(OpenRoutes.map(({path}) => path)).includes(location.pathname);
-        return !check && children
-    };
-
     return (<>
-        <Routers history={history}>
+        <Routers>
 
             {/*Start - main loader*/}
-            <Loader load={state.loading}/>
+            <Loader load={startLoader}/>
             {/*End - main loader*/}
 
             <Layout checkToken={checkToken}>
-
-                {/*Start - Define routes accessible without user verification*/}
-                {OpenRoutes.map((({path, Compo, check}, index) => {
-                    return (<Routes key={index}>
-                        <Route path={path} element={<WithoutToken><Compo/></WithoutToken>}/>
-                    </Routes>)
-                }))}
-                {/*End - Define routes accessible without user verification*/}
-
-
-                {/*Start - Define routes accessible with user verification*/}
-                {VerifyRoutes?.map((({path, Compo, check}, index) => {
-                    return (<Routes key={index}>
-                        <Route path={path} element={<WithToken><Compo/></WithToken>}/>
-                    </Routes>)
-                }))}
-                {/*End - Define routes accessible with user verification*/}
-
-
-                {/*Start - Render Error Page if the current path is not found */}
-                <Routes>
-                    <Route path="/*" exect element={<NoPage><Error/></NoPage>}/>
-                </Routes>
-                {/*End - Render Error Page if the current path is not found */}
-
+                {startProject && <>
+                    {/*Start - Render Error Page if the current path is not found */}
+                    <Routes>
+                        {OpenRoutes.concat(VerifyRoutes).map(({path, Compo, check}, index, arr) => {
+                            return <Route path={path} exect element={<PrivateRoute check={check} arr={arr}><Compo/></PrivateRoute>}/>
+                        })}
+                        <Route path="/*" exect element={<Error/>}/>
+                    </Routes>
+                    {/*End - Render Error Page if the current path is not found */}
+                </>}
             </Layout>
 
         </Routers>
