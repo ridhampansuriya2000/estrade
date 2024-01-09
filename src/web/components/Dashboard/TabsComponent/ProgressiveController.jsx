@@ -60,7 +60,7 @@ const ProgressiveController = ({userAccountData}) => {
 
     const fetchData = async () => {
         try {
-            const pnlResponse = await pnlPartitionedData()
+            const pnlResponse = await pnlPartitionedData(dispatch)
             if (pnlResponse.data?.upnl["DU7621536.Core"]) {
                 setPLData(pnlResponse.data.upnl["DU7621536.Core"]);
             }

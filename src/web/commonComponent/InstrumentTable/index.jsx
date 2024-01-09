@@ -9,10 +9,10 @@ import {Box, Typography} from "@mui/material";
 
 const InstrumentTable = ({data = [], column = []}) => {
     return (
-        <Box sx={{display: "flex", width: '100%', pl:{md: 1,xs:0}}}>
+        <Box sx={{display: "flex", width: '100%', pl: {md: 1, xs: 0}}}>
             <TableContainer>
                 <Table sx={{minWidth: 300}} aria-label="simple table">
-                    <TableHead sx={{borderRadius: "10px", background: "#F2F8FB",mb: 5}}>
+                    <TableHead sx={{borderRadius: "10px", background: "#F2F8FB", mb: 5}}>
                         <TableRow sx={newStyle.tableHead}>
                             {column?.map((col, index, arr) => {
                                 const firstHead = index === 0
@@ -37,31 +37,61 @@ const InstrumentTable = ({data = [], column = []}) => {
                             })}
                         </TableRow>
                     </TableHead>
-                    <TableBody sx={{mt:0}}>
-                        <TableRow  sx={{'&:last-child td, &:last-child th': {border: 0},backgroundColor: '#F2F8FB'}}>
-                            <TableCell colSpan={2} sx={{border: 0}}/>
-                            <TableCell colSpan={3} rowSpan={1} sx={newStyle.tableBodyTitle}>Long Trades</TableCell>
-                            <TableCell colSpan={3} rowSpan={1} sx={newStyle.tableBodyTitle}>Short Trades</TableCell>
-                        </TableRow>
-                        {data?.map((row, index) => {
-                            return (<>
-                                <TableRow key={row.name} sx={{'&:last-child td, &:last-child th': {border: 0},backgroundColor: '#F2F8FB'}}>
-                                    {column?.map((col, index) => {
-                                        const isEven = (number) => (number !== 0 && number % 2 === 0);
-                                        const tread = col?.filedName.includes('tread');
-                                        return (<>
-                                            {isEven(index) && <span style={{display: isEven(index) ? 'flex' : 'none'}}></span>}
-                                            <TableCell component="th" scope="row"
-                                                       sx={newStyle.tableCell}>
-                                                {row[col?.filedName]}
-                                            </TableCell>
-                                        </>)
-                                    })}
-                                </TableRow>
-                            </>)
-                        })}
+                    {/*<TableBody sx={{mt:0}}>*/}
+                    {/*    <TableRow  sx={{'&:last-child td, &:last-child th': {border: 0},backgroundColor: '#F2F8FB'}}>*/}
+                    {/*        <TableCell colSpan={2} sx={{border: 0}}/>*/}
+                    {/*        <TableCell colSpan={3} rowSpan={1} sx={newStyle.tableBodyTitle}>Long Trades</TableCell>*/}
+                    {/*        <TableCell colSpan={3} rowSpan={1} sx={newStyle.tableBodyTitle}>Short Trades</TableCell>*/}
+                    {/*    </TableRow>*/}
+                    {/*    {data?.map((row, index) => {*/}
+                    {/*        return (<>*/}
+                    {/*            <TableRow key={row.name} sx={{'&:last-child td, &:last-child th': {border: 0},backgroundColor: '#F2F8FB'}}>*/}
+                    {/*                {column?.map((col, index) => {*/}
+                    {/*                    const isEven = (number) => (number !== 0 && number % 2 === 0);*/}
+                    {/*                    const tread = col?.filedName.includes('tread');*/}
+                    {/*                    return (<>*/}
+                    {/*                        {isEven(index) && <span style={{display: isEven(index) ? 'flex' : 'none'}}></span>}*/}
+                    {/*                        <TableCell component="th" scope="row"*/}
+                    {/*                                   sx={newStyle.tableCell}>*/}
+                    {/*                            {row[col?.filedName]}*/}
+                    {/*                        </TableCell>*/}
+                    {/*                    </>)*/}
+                    {/*                })}*/}
+                    {/*            </TableRow>*/}
+                    {/*        </>)*/}
+                    {/*    })}*/}
 
-                    </TableBody>
+                    {/*</TableBody>*/}
+                </Table>
+                {/*<div>sdf</div>*/}
+                <Table sx={{mt:3}}>
+                    <Table sx={{minWidth: 300}} aria-label="simple table">
+                        <TableBody sx={{mt: 0}}>
+                            <TableRow sx={{'&:last-child td, &:last-child th': {border: 0}, borderTopLeftRadius: '10px', backgroundColor: '#F2F8FB'}}>
+                                <TableCell colSpan={2} sx={{border: 0}}/>
+                                <TableCell colSpan={3} rowSpan={1} sx={newStyle.tableBodyTitle}>Long Trades</TableCell>
+                                <TableCell colSpan={3} rowSpan={1} sx={newStyle.tableBodyTitle}>Short Trades</TableCell>
+                            </TableRow>
+                            {data?.map((row, index) => {
+                                return (<>
+                                    <TableRow key={row.name} sx={{'&:last-child td, &:last-child th': {border: 0}, backgroundColor: '#F2F8FB'}}>
+                                        {column?.map((col, index) => {
+                                            const isEven = (number) => (number !== 0 && number % 2 === 0);
+                                            const tread = col?.filedName.includes('tread');
+                                            return (<>
+                                                {isEven(index) && <span style={{display: isEven(index) ? 'flex' : 'none'}}></span>}
+                                                <TableCell component="th" scope="row"
+                                                           sx={newStyle.tableCell}>
+                                                    {row[col?.filedName]}
+                                                </TableCell>
+                                            </>)
+                                        })}
+                                    </TableRow>
+                                </>)
+                            })}
+
+                        </TableBody>
+                    </Table>
                 </Table>
             </TableContainer>
         </Box>
@@ -76,8 +106,8 @@ const newStyle = {
         borderRadius: "10px",
         background: "#F2F8FB",
     },
-    tableBodyTitle:{textAlign: 'center',color: '#3D454E',opacity: '0.8',border: 0},
-    tableCell:{
+    tableBodyTitle: {textAlign: 'center', color: '#3D454E', opacity: '0.8', border: 0},
+    tableCell: {
         borderBottom: 'none',
         textAlign: 'center',
         fontWeight: '500',

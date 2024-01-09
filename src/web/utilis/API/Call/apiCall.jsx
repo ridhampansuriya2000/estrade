@@ -48,7 +48,7 @@ export async function logOutUser(dispatch) {
     }
 }
 
-export async function pnlPartitionedData() {
+export async function pnlPartitionedData(dispatch) {
     try {
         const res = await api.get('iserver/account/pnl/partitioned');
         if (res.statusText !== 'OK') {

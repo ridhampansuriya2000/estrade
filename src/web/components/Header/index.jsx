@@ -42,7 +42,7 @@ const HeaderWeb = ({setOpenNavbar, openNavbar, checkToken}) => {
                                                      setOpenNavbar(true)
                                                  }}/>
                             </Box>
-                            <Grid sx={{display: "flex", alignItems: 'center', pr: 1, maxWidth: 'max-content', pl: 1}}>
+                            <Grid sx={{display: "flex", alignItems: 'center', pr: 0, maxWidth: 'max-content', pl: 1}}>
                                 <img src={logo} style={newStyle.headerLogo}/>
                             </Grid>
                         </Grid>

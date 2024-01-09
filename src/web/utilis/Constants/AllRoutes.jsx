@@ -7,12 +7,33 @@ import Home from "../../components/Home"
 // Start - Define routes accessible with user verification
 export const VerifyRoutes = [
     {
+        path: '/account',
+        Compo: Account,
+        check: true,
+    },
+    {
         path: '/dashboard',
         Compo: Dashboard,
         check: true,
     },
+
     {
-        path: '/account',
+        path: '/wallet',
+        Compo: Account,
+        check: true,
+    },
+    {
+        path: '/trade',
+        Compo: Account,
+        check: true,
+    },
+    {
+        path: '/tradeSetting',
+        Compo: Account,
+        check: true,
+    },
+    {
+        path: '/stems',
         Compo: Account,
         check: true,
     }
