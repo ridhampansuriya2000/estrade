@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {Grid, Box, Typography, Paper} from "@mui/material";
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import ProgressiveController from "./ProgressiveController";
@@ -187,7 +187,7 @@ const ProgressiveComponent = ({userAccountData}) => {
     </>);
 };
 
-export default ProgressiveComponent;
+export default memo(ProgressiveComponent);
 const newStyle = {
     detailTitle: {fontWeight: 600, fontSize: '16px', color: "#3D454E", backgroundColor: '#F2F8FB', borderRadius: "15px", p: 2.5},
     detailValue: {fontWeight: 500, fontSize: '15px', wordBreak: 'break-word', color: '#3D454E', opacity: '0.8'},

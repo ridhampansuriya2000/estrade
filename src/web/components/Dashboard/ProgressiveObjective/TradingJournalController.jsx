@@ -33,7 +33,7 @@ const TradingJournalController = () => {
         series: [
             {
                 name: 'Product One',
-                data: [23, 11, 22, 27, 13, 22],
+                data: [50, 60, 50, 60, 90, 100],
             },
         ],
     });
@@ -47,7 +47,7 @@ const TradingJournalController = () => {
         tooltip: {
             enabled: false,
         },
-        colors: ['#3C50E0', '#80CAEE'],
+        strokeColors: ['#3056D3', '#3056D3'],
         chart: {
             fontFamily: 'Satoshi, sans-serif',
             height: 335,

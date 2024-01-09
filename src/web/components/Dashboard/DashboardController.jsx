@@ -31,7 +31,7 @@ const DashboardController = () => {
     return {
         activeStep,
         setActiveStep,
-        userAccountData
+        userAccountData,
     };
 };
 

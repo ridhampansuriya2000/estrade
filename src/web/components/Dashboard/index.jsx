@@ -1,9 +1,12 @@
 import React from 'react';
 import DashboardController from "./DashboardController"
-import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import {dashboardTabs} from "../../utilis/Constants/commonData"
 import DashboardTabs from "../../commonComponent/DashboardTabs";
+import ProgressiveComponent from "./TabsComponent/ProgressiveComponent";
+import Account from "./Account";
+import ProgressiveObjective from "./ProgressiveObjective";
+import AccountInfo from "./AccountInfo";
 
 const Dashboard = () => {
     const [value, setValue] = React.useState(0);
@@ -11,40 +14,31 @@ const Dashboard = () => {
     const {
         activeStep,
         setActiveStep,
-        userAccountData
+        userAccountData,
     } = DashboardController()
 
-    function CustomTabPanel(props) {
-        const {children, value, index, ...other} = props;
-
-        return (
-            <div
-                role="tabpanel"
-                hidden={value !== index}
-                id={`simple-tabpanel-${index}`}
-                aria-labelledby={`simple-tab-${index}`}
-                {...other}
-            >
-                {value === index && (
-                    <Box sx={{pt: 3}}>
-                        {children}
-                    </Box>
-                )}
-            </div>
-        );
+    const renderDashboardTab = (values, userAccountDatas) => {
+        switch (values) {
+            case 0:
+                return <ProgressiveComponent userAccountData={userAccountDatas}/>;
+            case 1:
+                return <Account/>;
+            case 2:
+                return <ProgressiveObjective/>;
+            case 3:
+                return <AccountInfo/>;
+            default:
+                return <ProgressiveComponent/>;
+        }
     }
 
     return (<>
         <Box style={newStyle.tabBox} sx={{p: 1, overflowX: {xs: 'scroll', sm: 'auto'}}}>
             <DashboardTabs selectData={dashboardTabs} setValue={setValue} currentTab={value}/>
         </Box>
-
-        {dashboardTabs.map((Tab, index) => {
-            return (<CustomTabPanel value={value} index={index}>
-                <Tab.component userAccountData={userAccountData}/>
-            </CustomTabPanel>)
-        })}
-
+        <Box sx={{pt: 3}}>
+            {renderDashboardTab(value, userAccountData)}
+        </Box>
     </>);
 };
 

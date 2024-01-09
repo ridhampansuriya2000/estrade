@@ -52,7 +52,7 @@ const ProgressiveController = ({userAccountData}) => {
         series: [
             {
                 name: 'Product One',
-                data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30, 45],
+                data: [75, 90, 20, 35, 40, 70, 60, 30, 20, 100, 20, 55],
             },
         ],
     });
@@ -66,9 +66,13 @@ const ProgressiveController = ({userAccountData}) => {
             }
         } catch (error) {
             console.error("Error fetching data:", error);
+        } finally {
+            dispatch({type: 'SET_LOADING', payload: false});
         }
     };
+
     const fetchLedgerData = async () => {
+        dispatch({type: 'SET_LOADING', payload: true});
         try {
             const ledgerResponse = await getPortfolioLedger(userAccountData?.accounts[0])
             if (ledgerResponse.data) {
@@ -84,19 +88,22 @@ const ProgressiveController = ({userAccountData}) => {
                 );
             }
         } catch (error) {
-           console.error("Error fetching data:", error);
+            console.error("Error fetching data:", error);
+        } finally {
+            dispatch({type: 'SET_LOADING', payload: false});
         }
     };
 
     useEffect(() => {
         (async () => {
+            dispatch({type: 'SET_LOADING', payload: true});
             await fetchData();
             if (userAccountData?.accounts?.length && !state.loading) {
                 await fetchLedgerData();
             }
         })()
 
-    }, []);
+    }, [userAccountData]);
 
     const options = {
         legend: {
@@ -106,6 +113,9 @@ const ProgressiveController = ({userAccountData}) => {
         },
         colors: ['#0085FF', '#0085FF'],
         chart: {
+            zoom: {
+                enabled: false
+            },
             fontFamily: 'Satoshi, sans-serif',
             height: 335,
             type: 'area',
@@ -147,7 +157,7 @@ const ProgressiveController = ({userAccountData}) => {
         grid: {
             xaxis: {
                 lines: {
-                    show: true,
+                    show: false,
                 },
             },
             yaxis: {
@@ -160,40 +170,43 @@ const ProgressiveController = ({userAccountData}) => {
             enabled: false,
         },
         markers: {
-            size: 4,
+            size: 0,
             colors: '#fff',
-            strokeColors: ['#3056D3', '#80CAEE'],
-            strokeWidth: 3,
-            strokeOpacity: 0.9,
+            strokeColors: ['#3056D3', '#3056D3'],
+            strokeWidth: 0,
+            strokeOpacity: 0,
             strokeDashArray: 0,
-            fillOpacity: 1,
+            fillOpacity: 0,
             discrete: [],
             hover: {
                 size: undefined,
-                sizeOffset: 5,
+                sizeOffset: 0,
             },
         },
         xaxis: {
             type: 'category',
             categories: [
-                'Sep',
-                'Oct',
-                'Nov',
-                'Dec',
-                'Jan',
-                'Feb',
-                'Mar',
-                'Apr',
-                'May',
-                'Jun',
-                'Jul',
-                'Aug',
+                '6 Feb 23',
+                '7 Feb 23',
+                '8 Feb 23',
+                '9 Feb 23',
+                '10 Feb 23',
+                '11 Feb 23',
+                '12 Feb 23',
+                '13 Feb 23',
+                '14 Feb 23',
+                '15 Feb 23',
+                '16 Feb 23',
+                '17 Feb 23',
             ],
             axisBorder: {
                 show: false,
             },
             axisTicks: {
                 show: false,
+            },
+            tooltip: {
+                enabled: false
             },
         },
         yaxis: {
