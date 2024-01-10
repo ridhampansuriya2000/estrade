@@ -57,8 +57,7 @@ const Sidebar = ({setOpenNavbar}) => {
                                 <Box key={name} sx={{textAlign: 'center', m: 2}}>
                                     <Link to={route} style={{textDecoration: 'none'}}>
                                     <span>
-                                        <img src={Icon} style={{color: '#FFFFFF', opacity: activeIndex === index ? 1 : 0.3}}/>
-                                        {/*<Icon/>*/}
+                                        <img src={Icon} style={{opacity: activeIndex === index ? 1 : 0.3}}/>
                                     </span>
                                     </Link>
                                 </Box>

@@ -40,6 +40,8 @@ const ProgressiveController = ({userAccountData}) => {
     const [gainersStokesData, setGainersStokesData] = useState(gainersStokes);
     const [portfolioLedger, setPortfolioLedger] = useState({});
     const [initialTradingData, setInitialTradingData] = useState(initialTrading);
+    const [initialTradingFactor, setInitialTradingFactor] = useState(tradingFactor);
+    const [lastUpdate, setLastUpdate] = useState('5 Jan 2022 00:00:20:12');
     const [PLData, setPLData] = useState({
         rowType: 1,
         dpl: 0.0,
@@ -57,6 +59,17 @@ const ProgressiveController = ({userAccountData}) => {
         ],
     });
     const {state, dispatch} = useAppContext();
+
+    useEffect(() => {
+        (async () => {
+            dispatch({type: 'SET_LOADING', payload: true});
+            await fetchData();
+            if (userAccountData?.accounts?.length && !state.loading) {
+                await fetchLedgerData();
+            }
+        })()
+
+    }, [userAccountData]);
 
     const fetchData = async () => {
         try {
@@ -79,32 +92,52 @@ const ProgressiveController = ({userAccountData}) => {
                 setInitialTradingData(tradingValue =>
                     tradingValue.map(value => {
                         if (value.name === "Equity") {
-                            return {...value, data: `$${ledgerResponse.data.BASE?.netliquidationvalue}`};
+                            return {...value, data: `$${ledgerResponse.data.USD?.netliquidationvalue}`};
                         } else if (value.name === "Balance") {
-                            return {...value, data: `$${ledgerResponse.data.BASE?.cashbalance}`};
+                            return {...value, data: `$${ledgerResponse.data.USD?.cashbalance}`};
                         }
                         return value;
                     })
                 );
+                setInitialTradingFactor(tradingValue =>
+                    tradingValue.map(value => {
+                        if (value.name === "Interest") {
+                            return {...value, data: `$${ledgerResponse.data.USD?.interest}`};
+                        }
+                        return value;
+                    })
+                )
+                const lastUpdateTime = formatDate(ledgerResponse.data.USD?.timestamp)
+
+                lastUpdateTime && setLastUpdate(lastUpdateTime)
             }
         } catch (error) {
+            dispatch({type: 'SET_LOADING', payload: false});
             console.error("Error fetching data:", error);
         } finally {
             dispatch({type: 'SET_LOADING', payload: false});
         }
     };
 
-    useEffect(() => {
-        (async () => {
-            dispatch({type: 'SET_LOADING', payload: true});
-            await fetchData();
-            if (userAccountData?.accounts?.length && !state.loading) {
-                await fetchLedgerData();
-            }
-        })()
 
-    }, [userAccountData]);
 
+
+    const formatDate = (timestamp) => {
+        const date = new Date(timestamp * 1000);
+
+        const options = {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            fractionalSecondDigits: 3,
+            hour12: false,
+            timeZone: 'UTC',
+        };
+        return new Intl.DateTimeFormat('en-US', options).format(date);
+    }
     const options = {
         legend: {
             show: false,
@@ -219,8 +252,6 @@ const ProgressiveController = ({userAccountData}) => {
             max: 100,
         },
     };
-
-
     return {
         progressiveDetail,
         options,
@@ -229,11 +260,12 @@ const ProgressiveController = ({userAccountData}) => {
         selectTabs,
         setSelectTabs,
         initialTradingData,
-        tradingFactor,
+        initialTradingFactor,
         gainersStokesData,
         dispatch,
         portfolioLedger,
-        PLData
+        PLData,
+        lastUpdate
     }
 };
 

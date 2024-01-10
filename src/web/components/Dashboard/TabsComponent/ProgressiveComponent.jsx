@@ -11,7 +11,7 @@ import SummaryData from "../../../commonComponent/SummaryData";
 
 const ProgressiveComponent = ({userAccountData}) => {
 
-    const {progressiveDetail, options, newState, newSelectData, selectTabs, setSelectTabs, initialTradingData, tradingFactor, gainersStokesData, dispatch, portfolioLedger, PLData} = ProgressiveController({userAccountData});
+    const {progressiveDetail, options, newState, newSelectData, selectTabs, setSelectTabs, initialTradingData, initialTradingFactor, gainersStokesData, dispatch, portfolioLedger, PLData, lastUpdate} = ProgressiveController({userAccountData});
     return (<>
         <div>
             <Box sx={{flexGrow: 1}}>
@@ -85,7 +85,7 @@ const ProgressiveComponent = ({userAccountData}) => {
                             <Grid item lg={6} md={6} xs={12}>
                                 <Box sx={newStyle.averagePrice}>
                                     <Grid container>
-                                        {tradingFactor?.map((value) => {
+                                        {initialTradingFactor?.map((value) => {
                                             return (<Grid item lg={4} md={4} xs={4} sx={newStyle.tradingData}>
                                                 <Typography sx={newStyle.tradeTitle}>{value.name}</Typography>
                                                 <Typography sx={newStyle.normalData}>{value.data}</Typography>
@@ -104,7 +104,7 @@ const ProgressiveComponent = ({userAccountData}) => {
                             </Box>
                             <Box sx={newStyle.timeZoneBox}>
                                 <Typography sx={newStyle.tradeTitle}>Last Update : &nbsp;</Typography>
-                                <Typography sx={newStyle.tradeTime}>5 Jan 2022 00:00:20:12</Typography>
+                                <Typography sx={newStyle.tradeTime}>{lastUpdate}</Typography>
                             </Box>
                         </Grid>
                     </Paper>
