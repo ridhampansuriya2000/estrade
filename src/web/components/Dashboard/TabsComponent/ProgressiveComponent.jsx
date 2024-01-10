@@ -72,7 +72,7 @@ const ProgressiveComponent = ({userAccountData}) => {
                                 <Box sx={{display: "flex", justifyContent: 'space-between'}}>
                                     <Box sx={newStyle.averagePrice}>
                                         <Typography sx={newStyle.tradeTitle}>Average Profit</Typography>
-                                        <Typography sx={newStyle.tradeTime}>$46.36</Typography>
+                                        <Typography sx={newStyle.tradeTime}>${PLData['dpl']}</Typography>
                                     </Box>
                                     <Box sx={newStyle.averageDetails}>
                                         <Typography sx={newStyle.tradeTitle}>Avrage Loss</Typography>
